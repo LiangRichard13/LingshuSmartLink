@@ -10,7 +10,7 @@
 - [📖 简介](#简介)
 - [📊数据来源](#数据来源)
 - [🔍RAG模块构建](#RAG模块构建)
-- [😈多Agent架构](#模型架构)
+- [😈多Agent架构](#多Agent架构)
 - [🛠️ 使用方法](#使用方法)
 
 ## 📖 简介 <a id="简介"></a>
@@ -156,4 +156,10 @@ python <项目路径>/backend/agentsRunner.py
 
 输入舌苔图片路径:`<项目路径>/backend/static/images/<你的舌苔图片文件>`
 
-## 🎥 演示DEMO和📕报告样例 <a id="演示DEMO"></a>
+## 🎥 演示DEMO📕报告样例📑交互记录 <a id="演示DEMO"></a>
+
+- [演示视频](https://github.com/LiangRichard13/LingshuSmartLink/blob/master/example/%E7%81%B5%E6%9E%A2%E6%99%BA%E8%81%94%E6%BC%94%E7%A4%BA%E8%A7%86%E9%A2%91.mp4)
+
+- [报告示例](https://github.com/LiangRichard13/LingshuSmartLink/blob/master/example/markdown_20250418_155229.md)
+
+- [交互记录](https://github.com/LiangRichard13/LingshuSmartLink/blob/master/example/%E4%BA%A4%E4%BA%92%E8%AE%B0%E5%BD%95.txt)
