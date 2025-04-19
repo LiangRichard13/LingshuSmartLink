@@ -8,14 +8,18 @@
 ## 📝目录
 
 - [📖 简介](#简介)
+- [🎥 演示DEMO📕报告样例📑交互记录](#DEMO)
 - [📊数据来源](#数据来源)
 - [🔍RAG模块构建](#RAG模块构建)
 - [😈多Agent架构](#多Agent架构)
 - [🛠️ 使用方法](#使用方法)
 - [😊项目成员](#项目成员)
-- [🎥 演示DEMO📕报告样例📑交互记录](#DEMO)
 
 ## 📖 简介 <a id="简介"></a>
+
+<div align="center">
+  <img src="https://pic.imgdd.cc/item/6801fbda218de299cab4620a.png" width="100%" />
+</div>
 
 灵枢智联是一款基于多Agent协同架构的多模态中医智能诊疗系统，基于[LangChain](https://github.com/langchain-ai/langchain)框架进行搭建
 
@@ -47,10 +51,14 @@
   - 橙色预警
   - 黄色预警
 
-<div align="center">
-  <img src="https://pic.imgdd.cc/item/6801fbda218de299cab4620a.png" width="100%" />
-</div>
 
+## 🎥 演示DEMO📕报告样例📑交互记录 <a id="DEMO"></a>
+
+- [演示视频](https://github.com/LiangRichard13/LingshuSmartLink/blob/master/example/%E7%81%B5%E6%9E%A2%E6%99%BA%E8%81%94%E6%BC%94%E7%A4%BA%E8%A7%86%E9%A2%91.mp4)
+
+- [报告示例](https://github.com/LiangRichard13/LingshuSmartLink/blob/master/example/markdown_20250418_155229.md)
+
+- [交互记录](https://github.com/LiangRichard13/LingshuSmartLink/blob/master/example/%E4%BA%A4%E4%BA%92%E8%AE%B0%E5%BD%95.txt)
 
 ## 📊数据来源<a id="数据来源"></a>
 
@@ -165,12 +173,3 @@ python <项目路径>/backend/agentsRunner.py
 - [刘子洲](https://github.com/Zzzzz0214)（上海如海光电科技有限公司）
 
 - [王琳](https://github.com/lin-programmer)（万达信息股份有限公司）
-
-
-## 🎥 演示DEMO📕报告样例📑交互记录 <a id="DEMO"></a>
-
-- [演示视频](https://github.com/LiangRichard13/LingshuSmartLink/blob/master/example/%E7%81%B5%E6%9E%A2%E6%99%BA%E8%81%94%E6%BC%94%E7%A4%BA%E8%A7%86%E9%A2%91.mp4)
-
-- [报告示例](https://github.com/LiangRichard13/LingshuSmartLink/blob/master/example/markdown_20250418_155229.md)
-
-- [交互记录](https://github.com/LiangRichard13/LingshuSmartLink/blob/master/example/%E4%BA%A4%E4%BA%92%E8%AE%B0%E5%BD%95.txt)
