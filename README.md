@@ -58,7 +58,7 @@ RAG构建中医古籍资料来源：[中医药古籍文本](https://github.com/x
 
 ## 🔍RAG模块构建<a id="RAG模块构建"></a>
 
-使用大模型对收集到的中医药古籍文本中的81篇进行现代汉语翻译翻译,对翻译后的文档按照目录结构进行分块,使用[GTE文本向量-中文-通用领域-base](https://www.modelscope.cn/models/iic/nlp_gte_sentence-embedding_chinese-base/)进行向量嵌入并存储到Chroma向量数据库中
+使用大模型对收集到的中医药古籍文本中的81篇进行现代汉语翻译,对翻译后的文档按照目录结构进行分块,使用[GTE文本向量-中文-通用领域-base](https://www.modelscope.cn/models/iic/nlp_gte_sentence-embedding_chinese-base/)进行向量嵌入并存储到Chroma向量数据库中
 
 ## 😈多Agent架构 <a id="多Agent架构"></a>
 
@@ -94,11 +94,11 @@ RAG构建中医古籍资料来源：[中医药古籍文本](https://github.com/x
 
 ### 总结Agent
 
-- 使用[DeepSeek-V3](https://platform.deepseek.com/),负责总结行动Agent和指导Agent每次任务的多轮对话中的有效信息并输出该此任务的完整解决方案
+- 使用[DeepSeek-V3](https://platform.deepseek.com/),负责总结行动Agent和指导Agent每次任务的多轮对话中的有效信息并输出此任务的完整解决方案
 
 ### 报告生成Agent
 
-- 使用[DeepSeek-V3](https://platform.deepseek.com/),首先会提取出报告中用户难以理解的中医术语、药材名称、穴位名称，并使用[百度词条API](https://baike.deno.dev/)和[SerperAPI](https://serper.dev/)进行网络搜索
+- 使用[DeepSeek-V3](https://platform.deepseek.com/),首先会提取出报告中的中医术语、药材名称、穴位名称，并使用[百度词条API](https://baike.deno.dev/)和[SerperAPI](https://serper.dev/)进行网络搜索
 
 - 参考搜索到的结果和任务解决方案分阶段生成markdown格式的报告并在markdown文档中加入必要的解释以及相关网络链接、图片和相关养生文章
 
@@ -155,6 +155,15 @@ python <项目路径>/backend/agentsRunner.py
 ```
 
 输入舌苔图片路径:`<项目路径>/backend/static/images/<你的舌苔图片文件>`
+
+## 😊项目成员 <a id="项目成员"></a>
+
+- [梁晨诞](https://github.com/LiangRichard13)（上海计算机软件技术开发中心 软件工程研究所）
+
+- [刘子洲](https://github.com/Zzzzz0214)（上海如海光电科技有限公司）
+
+- [王琳](https://github.com/lin-programmer)（万达信息股份有限公司）
+
 
 ## 🎥 演示DEMO📕报告样例📑交互记录 <a id="演示DEMO"></a>
 
