@@ -54,6 +54,11 @@
 
 ## 🎥 演示DEMO📕报告样例📑交互记录 <a id="DEMO"></a>
 
+<video controls width="100%">
+  <source src="https://thumbsnap.com/i/tzejmo5Y.mp4" type="video/mp4">
+  你的浏览器不支持视频标签。
+</video>
+
 - [演示视频](https://github.com/LiangRichard13/LingshuSmartLink/blob/master/example/%E7%81%B5%E6%9E%A2%E6%99%BA%E8%81%94%E6%BC%94%E7%A4%BA%E8%A7%86%E9%A2%91.mp4)
 
 - [报告示例](https://github.com/LiangRichard13/LingshuSmartLink/blob/master/example/markdown_20250418_155229.md)
