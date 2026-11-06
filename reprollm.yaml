@@ -2,7 +2,7 @@ schema_version: 1
 project:
   name: lingshu-single-case
 experiment:
-  name: case-001-fixture-retrieval-reordered
+  name: case-001-fixture-search-v2
   profiles:
   - inference
   - trial_policy
@@ -66,7 +66,7 @@ custom:
     mode: fixture
     case_id: case-001
     report_time: '2026-11-05T00:00:00Z'
-    variant: retrieval-reordered
+    variant: search-v2
   workflow:
     chat_turn_limit: 5
     planner_max_attempts: 2
