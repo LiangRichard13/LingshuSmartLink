@@ -2,7 +2,7 @@ schema_version: 1
 project:
   name: lingshu-single-case
 experiment:
-  name: case-001-local-baseline
+  name: case-001-local-chunk400
   profiles:
   - inference
   - trial_policy
@@ -78,7 +78,7 @@ custom:
     mode: local
     case_id: case-001
     report_time: '2026-11-05T00:00:00Z'
-    variant: baseline
+    variant: chunk400
   workflow:
     chat_turn_limit: 5
     planner_max_attempts: 2
@@ -88,11 +88,11 @@ custom:
     chunk_overlap: 20
     k: 2
     corpus_manifest: trial/corpus/manifest.json
-    index_manifest: trial/assets-local/chroma-200/build-manifest.json
+    index_manifest: trial/assets-local/chroma-400/build-manifest.json
   assets:
     classifier_file: trial/assets-local/classifier/tongue_coating_resnet18.pth
     embedding_dir: trial/assets-local/gte
-    persist_directory: trial/assets-local/chroma-200
+    persist_directory: trial/assets-local/chroma-400
 artifacts:
   outputs:
   - trial/outputs/current/report.md

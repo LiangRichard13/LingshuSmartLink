@@ -1,7 +1,7 @@
 schema_version: 1
 reprollm_version: 0.7.0
-generated_at: '2026-11-06T08:49:22Z'
-manifest_sha256: sha256:e56cce805e65b189c44e39a3e75177cb6447bc9b84e55b822a5ef66d8d3e7d08
+generated_at: '2026-11-06T08:51:43Z'
+manifest_sha256: sha256:baab35aeeb1067c24278d85ae12a6bc090d10ff1b08d84bab5f373c5bcd73d25
 project_rules_sha256: sha256:f7fdcb0fae7e161d7b6af39efea88ca45c2c7eabf75380faa50136ee372719dd
 resolution:
   mode: offline
@@ -16,7 +16,7 @@ models:
       confidence: unresolved
       resolved_at: null
       note: null
-    observed_at: '2026-11-06T08:49:22Z'
+    observed_at: '2026-11-06T08:51:43Z'
     tokenizer: null
     chat_template: null
     config_sha256: null
@@ -35,7 +35,7 @@ models:
       confidence: unresolved
       resolved_at: null
       note: null
-    observed_at: '2026-11-06T08:49:22Z'
+    observed_at: '2026-11-06T08:51:43Z'
     tokenizer: null
     chat_template: null
     config_sha256: null
@@ -104,7 +104,7 @@ files:
   sha256: sha256:60562771f5554e507068025af291e60cddd127e47a3b8896e49ec7a2cb0efd34
   size_bytes: 6244
 - path: trial/configs/current.yaml
-  sha256: sha256:2a50427315ac56786af34a12a1776d64f4cbfc986c0796f233ed5b38effd8deb
+  sha256: sha256:cd217e9b4ec6bf5aa01723b7f593b23081d585f624a13422f8396cca85a2ef47
   size_bytes: 1695
 - path: trial/corpus/manifest.json
   sha256: sha256:c2607065e6c95b8a929cd349153d06d782a7ac97e29de67ae8d38327ad368014

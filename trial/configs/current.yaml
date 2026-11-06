@@ -44,8 +44,8 @@ rag:
   - <目录>
   k: 2
   corpus_manifest: trial/corpus/manifest.json
-  index_manifest: trial/assets-local/chroma-200/build-manifest.json
-  persist_directory: trial/assets-local/chroma-200
+  index_manifest: trial/assets-local/chroma-400/build-manifest.json
+  persist_directory: trial/assets-local/chroma-400
   embedding_model: trial/assets-local/gte
 classifier:
   mode: local
