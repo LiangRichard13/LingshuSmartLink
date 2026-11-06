@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "kind": "fixture-retrieval-descriptor",
+  "chunk_size": 200,
+  "chunk_overlap": 20,
+  "separators": [
+    "<目录>"
+  ],
+  "k": 2,
+  "docs": 3,
+  "note": "fixture 模式的固定检索集合描述；真实 Chroma 索引由构建脚本生成 build-manifest.json。"
+}

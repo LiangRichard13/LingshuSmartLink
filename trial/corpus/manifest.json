@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "files": [
+    {
+      "path": "C:/Users/Administrator/Desktop/projects/LingshuSmartLink/trial/corpus/texts/synthetic-01.txt",
+      "sha256": "sha256:327e4f768977a82c9a564ca1eb79ae167af28d2a672d56335462c1b0a02f4cfa",
+      "size_bytes": 198
+    },
+    {
+      "path": "C:/Users/Administrator/Desktop/projects/LingshuSmartLink/trial/corpus/texts/synthetic-02.txt",
+      "sha256": "sha256:6ae89a2e88be853e93085f83e4acadec6f9239eff6b770a6868d27f69802537e",
+      "size_bytes": 180
+    },
+    {
+      "path": "C:/Users/Administrator/Desktop/projects/LingshuSmartLink/trial/corpus/texts/synthetic-03.txt",
+      "sha256": "sha256:1916b03f258750b46ceb2a366f7eedbbfe2727c3ad9ecf94098f8ff7339573de",
+      "size_bytes": 168
+    }
+  ]
+}
