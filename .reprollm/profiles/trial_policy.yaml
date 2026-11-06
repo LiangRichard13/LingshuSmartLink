@@ -1,0 +1,14 @@
+schema_version: 1
+name: trial_policy
+description: Single-case application trial drift policy.
+extends: []
+rules: []
+required_fields: []
+severity_overrides: {}
+drift_overrides:
+  custom.workflow.chat_turn_limit: HIGH
+  custom.workflow.planner_max_attempts: HIGH
+  custom.rag.chunk_size: HIGH
+  custom.rag.chunk_overlap: HIGH
+  custom.rag.k: HIGH
+detect: {}

@@ -1,0 +1,22 @@
+# .reprollm/config.yaml — tool configuration (spec §8).
+# CLI flags override this file; this file overrides defaults.
+
+schema_version: 1
+
+audit:
+  fail_on: critical   # critical | warning | never
+  ignore: []          # e.g. [{rule: code.no_untracked, reason: "generated notebooks"}]
+  show_passed: false
+
+run:
+  env_capture: allowlist   # allowlist | all
+  capture_output: false
+  snapshot_max_bytes: 1048576
+  extra_env_allowlist: []  # extra exact env names or prefixes ending with "_"
+
+discover:
+  enabled: false           # must also pass --experimental on the CLI
+  base_url_env: REPROLLM_LLM_BASE_URL
+  api_key_env: REPROLLM_LLM_API_KEY
+  model_env: REPROLLM_LLM_MODEL
+  max_chars: 60000
