@@ -1,7 +1,7 @@
 schema_version: 1
 reprollm_version: 0.7.0
-generated_at: '2026-11-06T07:11:37Z'
-manifest_sha256: sha256:194cea0afe1018ebde503424b7ee471964e8cc1abb53a56f51deb41035c540f3
+generated_at: '2026-11-06T07:13:43Z'
+manifest_sha256: sha256:321ee6498e37103f5a6823bf0ad77b6cbdf2ec32b16b618355fe973ed7e5b54c
 project_rules_sha256: sha256:f7fdcb0fae7e161d7b6af39efea88ca45c2c7eabf75380faa50136ee372719dd
 resolution:
   mode: offline
@@ -16,7 +16,7 @@ models:
       confidence: unresolved
       resolved_at: null
       note: null
-    observed_at: '2026-11-06T07:11:37Z'
+    observed_at: '2026-11-06T07:13:43Z'
     tokenizer: null
     chat_template: null
     config_sha256: null
@@ -35,7 +35,7 @@ models:
       confidence: unresolved
       resolved_at: null
       note: null
-    observed_at: '2026-11-06T07:11:37Z'
+    observed_at: '2026-11-06T07:13:43Z'
     tokenizer: null
     chat_template: null
     config_sha256: null
@@ -48,8 +48,8 @@ datasets: {}
 prompts:
   actor:
     path: trial/prompts/actor.txt
-    sha256: sha256:f7f066a0bdddbf82a84356a40884c34b459a44a3442b631a577d45e26dbe86a5
-    size_bytes: 1291
+    sha256: sha256:84cbb684903144838d9e7a1e2b9b309f83ea54e4bd56dcf24e321597e224348c
+    size_bytes: 1314
     text_sha256: null
   informer:
     path: trial/prompts/informer.txt
@@ -113,8 +113,8 @@ files:
   sha256: sha256:8c88ea56890b69bef429b97e3f4ce18752354be5fb2a112d866b8712b8d2c6aa
   size_bytes: 1602
 - path: trial/fixtures/external.json
-  sha256: sha256:86a7359e98d61f87981e0a0c5c79c9b5bd848faab2b65b36ae58c5722ad36f6c
-  size_bytes: 8320
+  sha256: sha256:f5aa7843e496f296a2f2919d270a4ff3954cc1a2ac3787967ebed7725a97de6d
+  size_bytes: 8290
 - path: trial/fixtures/index-manifest.json
   sha256: sha256:5b13ff091b0cc19b908d402dd28fcb6a260ef3de47e66793f395c388b8a5d74d
   size_bytes: 307
