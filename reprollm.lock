@@ -1,6 +1,6 @@
 schema_version: 1
 reprollm_version: 0.7.0
-generated_at: '2026-11-06T09:24:41Z'
+generated_at: '2026-11-06T09:26:43Z'
 manifest_sha256: sha256:6ed972dc9cf1978251de060ba8eb3c58843dde45f856d340db1f5d0eb265e01d
 project_rules_sha256: sha256:f7fdcb0fae7e161d7b6af39efea88ca45c2c7eabf75380faa50136ee372719dd
 resolution:
@@ -16,7 +16,7 @@ models:
       confidence: unresolved
       resolved_at: null
       note: null
-    observed_at: '2026-11-06T09:24:41Z'
+    observed_at: '2026-11-06T09:26:43Z'
     tokenizer: null
     chat_template: null
     config_sha256: null
@@ -35,7 +35,7 @@ models:
       confidence: unresolved
       resolved_at: null
       note: null
-    observed_at: '2026-11-06T09:24:41Z'
+    observed_at: '2026-11-06T09:26:43Z'
     tokenizer: null
     chat_template: null
     config_sha256: null
