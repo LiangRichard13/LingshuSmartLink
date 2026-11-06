@@ -6,3 +6,5 @@ trial/outputs/
 .reprollm/runs/
 __pycache__/
 *.pyc
+.env
+backend/model/tongue_coating_classify/checkpoints_*/
