@@ -775,8 +775,9 @@ def _switch_variant_assets(variant: str) -> None:
 def write_manifest(config: dict, variant: str) -> None:
     mode = config["trial"]["mode"]
     prompts = {role: {"path": path} for role, path in config["prompts"].items()}
+    case_file = "trial/cases/case-001-live.json" if mode == "live" else "trial/cases/case-001.json"
     config_files = [
-        "trial/cases/case-001.json",
+        case_file,
         "trial/cases/case-001.png",
         "trial/configs/current.yaml",
         "trial/corpus/manifest.json",
@@ -824,7 +825,7 @@ def write_manifest(config: dict, variant: str) -> None:
         "execution": {
             "command": (
                 "python backend/replay_case.py --mode {mode} "
-                "--case trial/cases/case-001.json --image trial/cases/case-001.png "
+                f"--case {case_file} --image trial/cases/case-001.png "
                 "--config trial/configs/current.yaml --cassette trial/fixtures/external.json "
                 "--output-dir trial/outputs/current"
             ).format(mode=mode),

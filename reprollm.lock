@@ -1,7 +1,7 @@
 schema_version: 1
 reprollm_version: 0.7.0
-generated_at: '2026-11-06T09:09:19Z'
-manifest_sha256: sha256:327be743c671002d85fb73aedd6d5073b7febee868dcc6cd32aacf9fac3c3413
+generated_at: '2026-11-06T09:13:08Z'
+manifest_sha256: sha256:6ed972dc9cf1978251de060ba8eb3c58843dde45f856d340db1f5d0eb265e01d
 project_rules_sha256: sha256:f7fdcb0fae7e161d7b6af39efea88ca45c2c7eabf75380faa50136ee372719dd
 resolution:
   mode: offline
@@ -16,7 +16,7 @@ models:
       confidence: unresolved
       resolved_at: null
       note: null
-    observed_at: '2026-11-06T09:09:19Z'
+    observed_at: '2026-11-06T09:13:08Z'
     tokenizer: null
     chat_template: null
     config_sha256: null
@@ -35,7 +35,7 @@ models:
       confidence: unresolved
       resolved_at: null
       note: null
-    observed_at: '2026-11-06T09:09:19Z'
+    observed_at: '2026-11-06T09:13:08Z'
     tokenizer: null
     chat_template: null
     config_sha256: null
@@ -97,9 +97,9 @@ prompts:
     size_bytes: 392
     text_sha256: null
 files:
-- path: trial/cases/case-001.json
-  sha256: sha256:9e4237d0b89d0c23d5712941b4c0a12fbcf8ac7e1aa0136f34220d43d3c1ecf2
-  size_bytes: 576
+- path: trial/cases/case-001-live.json
+  sha256: sha256:f26a01de0f9951164e688444127dba54fc4cf04aac4bd54d65b62638a770e019
+  size_bytes: 962
 - path: trial/cases/case-001.png
   sha256: sha256:60562771f5554e507068025af291e60cddd127e47a3b8896e49ec7a2cb0efd34
   size_bytes: 6244

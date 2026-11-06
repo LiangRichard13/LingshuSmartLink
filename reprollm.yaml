@@ -53,12 +53,12 @@ generation:
 inference:
   backend: other
 execution:
-  command: python backend/replay_case.py --mode live --case trial/cases/case-001.json
+  command: python backend/replay_case.py --mode live --case trial/cases/case-001-live.json
     --image trial/cases/case-001.png --config trial/configs/current.yaml --cassette
     trial/fixtures/external.json --output-dir trial/outputs/current
   cwd: .
   config_files:
-  - trial/cases/case-001.json
+  - trial/cases/case-001-live.json
   - trial/cases/case-001.png
   - trial/configs/current.yaml
   - trial/corpus/manifest.json

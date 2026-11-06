@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "case_id": "case-001",
+  "synthetic": true,
+  "image": "trial/cases/case-001.png",
+  "messages": [
+    {
+      "role": "user",
+      "content": "你好，我最近肚子不太舒服，想咨询一下。"
+    },
+    {
+      "role": "user",
+      "content": "间歇性下腹胀痛三天了，饭后发作，持续一小时，还有点腹泻。"
+    },
+    {
+      "role": "user",
+      "content": "24岁男性学生，无慢性病史，偶尔吃辛辣，作息基本规律。"
+    },
+    {
+      "role": "user",
+      "content": "补充：无慢性病史、无手术过敏史，不吸烟不饮酒，最近工作压力一般，睡眠正常。目前能想到的都说了。"
+    },
+    {
+      "role": "user",
+      "content": "信息就这些了。请现在输出完整的患者背景信息描述，并以 <INFORMER_TASK_DONE> 结束本次信息收集。"
+    }
+  ],
+  "report_time": "2026-11-05T00:00:00Z"
+}
