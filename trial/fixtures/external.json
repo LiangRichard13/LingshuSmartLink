@@ -89,34 +89,34 @@
     "terms": [
       {
         "item": "湿热",
-        "item_search_result": "https://fixture.example/terms/湿热?rev=base"
+        "item_search_result": "https://fixture.example/terms/湿热?rev=search-v2"
       },
       {
         "item": "脾胃湿热",
-        "item_search_result": "https://fixture.example/terms/脾胃湿热?rev=base"
+        "item_search_result": "https://fixture.example/terms/脾胃湿热?rev=search-v2"
       }
     ],
     "herbs": [
       {
         "item": "黄连",
-        "item_search_result": "https://fixture.example/herbs/黄连?rev=base"
+        "item_search_result": "https://fixture.example/herbs/黄连?rev=search-v2"
       }
     ],
     "acupoints": [
       {
         "item": "足三里",
-        "item_search_result": "https://fixture.example/acupoints/足三里?rev=base"
+        "item_search_result": "https://fixture.example/acupoints/足三里?rev=search-v2"
       }
     ],
     "herb_images": [
       {
         "item": "黄连",
-        "item_image_search_result": "https://fixture.example/images/黄连.jpg?rev=base"
+        "item_image_search_result": "https://fixture.example/images/黄连.jpg?rev=search-v2"
       }
     ],
     "keyword": [
       {
-        "title": "脾胃湿热的饮食调理（fixture 搜索结果base）",
+        "title": "脾胃湿热的饮食调理（fixture 搜索结果search-v2）",
         "link": "https://fixture.example/articles/1"
       },
       {

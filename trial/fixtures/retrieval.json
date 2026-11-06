@@ -3,16 +3,16 @@
   "synthetic": true,
   "docs": [
     {
-      "id": "doc-b",
-      "source": "trial/corpus/texts/synthetic-02.txt",
-      "content": "脾主运化的证候要点（合成语料B）：腹胀便溏，苔厚腻，饮食宜清淡，忌辛辣肥甘。",
-      "score": 0.87
-    },
-    {
       "id": "doc-a",
       "source": "trial/corpus/texts/synthetic-01.txt",
       "content": "脾胃湿热的成因与调理原则（合成语料A）：湿邪困脾，运化失司，宜健脾利湿。",
       "score": 0.91
+    },
+    {
+      "id": "doc-b",
+      "source": "trial/corpus/texts/synthetic-02.txt",
+      "content": "脾主运化的证候要点（合成语料B）：腹胀便溏，苔厚腻，饮食宜清淡，忌辛辣肥甘。",
+      "score": 0.87
     },
     {
       "id": "doc-c",
