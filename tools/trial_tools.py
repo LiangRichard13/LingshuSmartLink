@@ -1092,6 +1092,23 @@ def cmd_verify(args) -> int:
         chat_models == {expectation["models"]["primary"]},
         json.dumps(sorted(chat_models)),
     )
+    # 配置分块参数必须与索引构建清单一致（chunk400 教训：路径切了、参数没切）
+    rag_cfg = consumed.get("effective", {}).get("rag", {})
+    index_rel = rag_cfg.get("index_manifest")
+    if index_rel and rag_cfg.get("persist_directory"):
+        index_file = ROOT / index_rel
+        if index_file.is_file():
+            idx = json.loads(index_file.read_text(encoding="utf-8"))
+            mismatch = []
+            for key in ("chunk_size", "chunk_overlap"):
+                if rag_cfg.get(key) != idx.get(key):
+                    mismatch.append(f"{key}: config={rag_cfg.get(key)} index={idx.get(key)}")
+            check(
+                "consumed.rag_matches_index_build",
+                not mismatch,
+                "; ".join(mismatch),
+            )
+
     check(
         "consumed.budget_within_limit",
         consumed.get("budget", {}).get("used", 0)

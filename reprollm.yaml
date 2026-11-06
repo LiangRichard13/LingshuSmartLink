@@ -2,7 +2,7 @@ schema_version: 1
 project:
   name: lingshu-single-case
 experiment:
-  name: case-001-local-chunk400
+  name: case-001-local-chunk400-c
   profiles:
   - inference
   - trial_policy
@@ -78,13 +78,13 @@ custom:
     mode: local
     case_id: case-001
     report_time: '2026-11-05T00:00:00Z'
-    variant: chunk400
+    variant: chunk400-c
   workflow:
     chat_turn_limit: 5
     planner_max_attempts: 2
     model_call_limit: 80
   rag:
-    chunk_size: 200
+    chunk_size: 400
     chunk_overlap: 20
     k: 2
     corpus_manifest: trial/corpus/manifest.json
