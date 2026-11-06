@@ -995,7 +995,10 @@ def cmd_verify(args) -> int:
         run_dir = matches[0]
     run_record = json.loads((run_dir / "run.json").read_text(encoding="utf-8"))
     scenario = args.scenario
-    expectation_path = TRIAL / "expectations" / f"{scenario}.json"
+    candidates = [TRIAL / "expectations" / f"{scenario}.json"]
+    if not scenario.startswith(("fixture-", "local-", "live-")):
+        candidates.append(TRIAL / "expectations" / f"fixture-{scenario}.json")
+    expectation_path = next((path for path in candidates if path.is_file()), candidates[0])
     if not expectation_path.is_file():
         raise SystemExit(f"缺少预期文件: trial/expectations/{scenario}.json（先运行对应 prepare）")
     expectation = json.loads(expectation_path.read_text(encoding="utf-8"))
