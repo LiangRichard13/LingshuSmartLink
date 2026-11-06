@@ -1415,9 +1415,10 @@ def build_real_services(config: TrialConfig, root: Path) -> ServiceBundle:
                 REASON_MODE_CONFLICT,
             )
     else:
-        if config.search.get("mode") != "baidu_serper":
+        if config.search.get("mode") not in ("baidu_serper", "serper"):
             raise RealServicesError(
-                "live 模式要求 search.mode=baidu_serper（真实搜索）", REASON_MODE_CONFLICT
+                "live 模式要求 search.mode=baidu_serper 或 serper（真实搜索）",
+                REASON_MODE_CONFLICT,
             )
 
     deepseek_key = os.getenv("DEEP_SEEK_API_KEY", "")
