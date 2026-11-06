@@ -1259,7 +1259,7 @@ def cmd_probe_pth(args) -> int:
         manifest = {
             "schema_version": 1,
             "project": {"name": f"pth-probe-{name}"},
-            "experiment": {"name": name, "profiles": ["core"]},
+            "experiment": {"name": name, "profiles": []},
             "models": {"primary": {"provider": "local", "id": spec["id"]}},
             "execution": {"command": "python -c \"pass\"", "cwd": "."},
         }
