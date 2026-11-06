@@ -1,7 +1,7 @@
 schema_version: 1
 reprollm_version: 0.7.0
-generated_at: '2026-11-06T07:13:43Z'
-manifest_sha256: sha256:321ee6498e37103f5a6823bf0ad77b6cbdf2ec32b16b618355fe973ed7e5b54c
+generated_at: '2026-11-06T07:13:45Z'
+manifest_sha256: sha256:1be518b649f138849bc694f8c457f55406fe0e33e43957daa11de6129638965e
 project_rules_sha256: sha256:f7fdcb0fae7e161d7b6af39efea88ca45c2c7eabf75380faa50136ee372719dd
 resolution:
   mode: offline
@@ -16,7 +16,7 @@ models:
       confidence: unresolved
       resolved_at: null
       note: null
-    observed_at: '2026-11-06T07:13:43Z'
+    observed_at: '2026-11-06T07:13:45Z'
     tokenizer: null
     chat_template: null
     config_sha256: null
@@ -35,7 +35,7 @@ models:
       confidence: unresolved
       resolved_at: null
       note: null
-    observed_at: '2026-11-06T07:13:43Z'
+    observed_at: '2026-11-06T07:13:45Z'
     tokenizer: null
     chat_template: null
     config_sha256: null
@@ -101,8 +101,8 @@ files:
   sha256: sha256:9e4237d0b89d0c23d5712941b4c0a12fbcf8ac7e1aa0136f34220d43d3c1ecf2
   size_bytes: 576
 - path: trial/cases/case-001.png
-  sha256: sha256:60562771f5554e507068025af291e60cddd127e47a3b8896e49ec7a2cb0efd34
-  size_bytes: 6244
+  sha256: sha256:1151a9701446cf8b2ee21e333bb3c90bad10c8c1b2a3ddb63fd18f03839f4821
+  size_bytes: 5872
 - path: trial/configs/current.yaml
   sha256: sha256:55d534eda2183d2ff9eb4ae94c647fb6a331c09684ccd2f8563e8b19d8222c54
   size_bytes: 1470
