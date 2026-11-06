@@ -1278,9 +1278,10 @@ class RealSearchBackend:
 
     def search_keyword(self, keyword):
         data, _ = self._serper([{"q": keyword, "gl": "cn", "hl": "zh-cn"}], "/search", "organic")
+        batch = data[0] if isinstance(data, list) else data
         results = [
             {"title": entry.get("title", ""), "link": entry.get("link", "")}
-            for entry in data["organic"][:5]
+            for entry in batch["organic"][:5]
         ]
         return [{"item": keyword, "item_search_result": results}]
 
