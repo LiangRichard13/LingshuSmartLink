@@ -54,7 +54,7 @@ classifier:
   checkpoint: trial/assets-local/classifier/tongue_coating_resnet18.pth
   device: cpu
 search:
-  mode: baidu_serper
+  mode: serper
   timeout_seconds: 30
 retrieval: {}
 timeouts:

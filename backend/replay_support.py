@@ -452,8 +452,11 @@ def parse_config(raw: dict, source_path: str = "<memory>") -> TrialConfig:
         raise TrialConfigError("缺少 search 配置段")
     _require_keys("search", search, ("mode",))
     _reject_unknown("search", search, ("mode", "cassette", "timeout_seconds"))
-    if search["mode"] not in ("fixture", "baidu_serper"):
-        raise TrialConfigError("search.mode 必须是 fixture 或 baidu_serper")
+    if search["mode"] not in ("fixture", "baidu_serper", "serper"):
+        raise TrialConfigError(
+            "search.mode 必须是 fixture、baidu_serper 或 serper"
+            "（serper：原代码中备选的 Serper 网页搜索路径，baike.deno.dev 服务失效后经贡献者授权启用）"
+        )
 
     retrieval = raw.get("retrieval")
     if not isinstance(retrieval, dict):
@@ -1193,12 +1196,36 @@ class RealRetriever:
 
 
 class RealSearchBackend:
-    """百度词条 + Serper 图片/关键词搜索；超时来自配置。"""
+    """词条搜索（百度百科镜像或 Serper 网页搜索）+ Serper 图片/关键词搜索；超时来自配置。
 
-    def __init__(self, baidu_api: str, serper_api_key: str, timeout_seconds: float) -> None:
+    baike.deno.dev（社区百科镜像）2026-11-06 起直连/代理均不可达（服务失效）；
+    search.mode=serper 时词条类搜索改走 Serper 网页搜索——对应原代码
+    linksAddAgent 中已存在但被注释的 serper_search 备选路径。
+    """
+
+    def __init__(
+        self,
+        baidu_api: str,
+        serper_api_key: str,
+        timeout_seconds: float,
+        terms_transport: str = "baidu",
+    ) -> None:
         self._baidu_api = baidu_api
         self._serper_api_key = serper_api_key
         self._timeout = timeout_seconds
+        self._terms_transport = terms_transport
+
+    def _serper_web(self, items: list) -> list:
+        payload = [{"q": item, "gl": "cn", "hl": "zh-cn"} for item in items]
+        data, _ = self._serper(payload, "/search", "organic")
+        formatted = []
+        for item, entry in zip(items, data):
+            results = [
+                {"title": one.get("title", ""), "link": one.get("link", "")}
+                for one in entry.get("organic", [])[:3]
+            ]
+            formatted.append({"item": item, "item_search_result": results})
+        return formatted
 
     def _baidu(self, items: list) -> list:
         import urllib.parse
@@ -1225,12 +1252,18 @@ class RealSearchBackend:
         return data, result_key
 
     def search_terms(self, items):
+        if self._terms_transport == "serper":
+            return self._serper_web(items)
         return self._baidu(items)
 
     def search_herbs(self, items):
+        if self._terms_transport == "serper":
+            return self._serper_web(items)
         return self._baidu(items)
 
     def search_acupoints(self, items):
+        if self._terms_transport == "serper":
+            return self._serper_web(items)
         return self._baidu(items)
 
     def search_herb_images(self, items):
@@ -1454,6 +1487,9 @@ def build_real_services(config: TrialConfig, root: Path) -> ServiceBundle:
             baidu_api="https://baike.deno.dev",
             serper_api_key=serper_key,
             timeout_seconds=config.timeouts["search_seconds"],
+            terms_transport=(
+                "serper" if config.search.get("mode") == "serper" else "baidu"
+            ),
         )
     classifier = RealClassifier(
         checkpoint=str(checkpoint_path), device=config.classifier.get("device", "cpu")

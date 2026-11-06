@@ -60,7 +60,7 @@ classifier:
   checkpoint: trial/assets-local/classifier/tongue_coating_resnet18.pth
   device: cpu
 search:
-  mode: baidu_serper
+  mode: serper  # baike.deno.dev 服务失效（2026-11-06 直连/代理均不可达），词条搜索经贡献者授权改走 Serper 网页搜索
   timeout_seconds: 30
 retrieval: {}
 timeouts:
