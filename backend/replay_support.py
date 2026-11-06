@@ -269,6 +269,8 @@ _MODES = ("fixture", "local", "live")
 class RoleModelConfig:
     model: str
     params: dict
+    base_url: str | None = None      # OpenAI 兼容 endpoint；缺省用该角色的历史 endpoint
+    api_key_env: str | None = None   # 凭据的环境变量名（不是密钥值，可入库）
 
 
 @dataclass(frozen=True)
@@ -386,14 +388,21 @@ def parse_config(raw: dict, source_path: str = "<memory>") -> TrialConfig:
         if not isinstance(data, dict):
             raise TrialConfigError(f"models.{section} 必须是映射")
         _require_keys(f"models.{section}", data, ("model",))
-        _reject_unknown(f"models.{section}", data, ("model", "params"))
+        _reject_unknown(f"models.{section}", data, ("model", "params", "base_url", "api_key_env"))
         params = data.get("params", {})
         if not isinstance(params, dict):
             raise TrialConfigError(f"models.{section}.params 必须是映射")
         model_name = data["model"]
         if not isinstance(model_name, str) or not model_name:
             raise TrialConfigError(f"models.{section}.model 必须是非空字符串")
-        return RoleModelConfig(model=model_name, params=dict(params))
+        base_url = data.get("base_url")
+        api_key_env = data.get("api_key_env")
+        for key, value in (("base_url", base_url), ("api_key_env", api_key_env)):
+            if value is not None and (not isinstance(value, str) or not value):
+                raise TrialConfigError(f"models.{section}.{key} 必须是非空字符串或省略")
+        return RoleModelConfig(
+            model=model_name, params=dict(params), base_url=base_url, api_key_env=api_key_env
+        )
 
     primary = _role("primary")
     vision = _role("vision")
@@ -1424,13 +1433,21 @@ def build_real_services(config: TrialConfig, root: Path) -> ServiceBundle:
         search = FixtureSearchBackend(cassette["search"])
     else:
         chat = RealChatClient(
-            base_url="https://api.deepseek.com",
+            base_url=config.primary.base_url or "https://api.deepseek.com",
             api_key=deepseek_key,
             timeout_seconds=config.timeouts["chat_seconds"],
         )
+        vision_base_url = config.vision.base_url or "https://api.stepfun.com/v1"
+        vision_key_env = config.vision.api_key_env or "STEP_FUN_API_KEY"
+        vision_key = os.getenv(vision_key_env, "")
+        if not vision_key:
+            raise RealServicesError(
+                f"live 模式视觉角色要求环境变量 {vision_key_env}（models.vision.api_key_env）",
+                REASON_ASSET_MISSING,
+            )
         vision = RealVisionClient(
-            base_url="https://api.stepfun.com/v1",
-            api_key=stepfun_key,
+            base_url=vision_base_url,
+            api_key=vision_key,
             timeout_seconds=config.timeouts["vision_seconds"],
         )
         search = RealSearchBackend(

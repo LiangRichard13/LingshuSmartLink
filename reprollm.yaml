@@ -18,7 +18,7 @@ models:
       max_tokens: 4096
   vision:
     provider: other
-    id: step-1v-8k
+    id: Qwen/Qwen3-VL-32B-Instruct
     endpoint:
       base_url: https://api.stepfun.com/v1
     params:

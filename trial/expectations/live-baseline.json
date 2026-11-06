@@ -14,7 +14,7 @@
   "mode": "live",
   "models": {
     "primary": "deepseek-chat",
-    "vision": "step-1v-8k"
+    "vision": "Qwen/Qwen3-VL-32B-Instruct"
   },
   "planner_max_attempts": 2,
   "planning_chat_calls": 1,
