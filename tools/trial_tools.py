@@ -908,6 +908,9 @@ def write_expectation(config: dict, variant: str) -> None:
         "informer_turns": 3,
         "instructor_calls_per_task": chat_turn_limit,
         "consultation_chat_calls": 4 * (2 * chat_turn_limit + 2),
+        "consultation_max_chat_calls": 4 * (2 * chat_turn_limit + 2),
+        "instructor_max_calls": 4 * chat_turn_limit,
+        "termination_reasons": ["task_done", "turn_limit"],
         "report_chat_calls": 5,
         "links_chat_calls": 1,
         "planning_chat_calls": 1,
@@ -1063,20 +1066,43 @@ def cmd_verify(args) -> int:
     consumed = json.loads((outputs / "consumed.json").read_text(encoding="utf-8"))
     counts = consumed.get("call_counts", {})
     by_stage = counts.get("by_stage", {})
-    check(
-        "consumed.consultation_calls",
-        by_stage.get("consultation") == expectation["consultation_chat_calls"],
-        f"observed={by_stage.get('consultation')} expected={expectation['consultation_chat_calls']}",
-    )
-    check(
-        "consumed.instructor_calls",
-        by_stage.get("consultation") == expectation["consultation_chat_calls"]
-        and consumed.get("fixture_consumption", {})
-        .get("responses_consumed_per_role", {})
-        .get("instructor")
-        == expectation["instructor_calls_per_task"] * expectation["tasks"],
-        json.dumps(consumed.get("fixture_consumption", {}), ensure_ascii=False),
-    )
+    if expectation["mode"] == "fixture":
+        check(
+            "consumed.consultation_calls",
+            by_stage.get("consultation") == expectation["consultation_chat_calls"],
+            f"observed={by_stage.get('consultation')} expected={expectation['consultation_chat_calls']}",
+        )
+        check(
+            "consumed.instructor_calls",
+            consumed.get("fixture_consumption", {})
+            .get("responses_consumed_per_role", {})
+            .get("instructor")
+            == expectation["instructor_calls_per_task"] * expectation["tasks"],
+            json.dumps(consumed.get("fixture_consumption", {}), ensure_ascii=False),
+        )
+    else:
+        # 真实模型可能提前给出 <CAMEL_TASK_DONE>：校验上界与终止原因，不校验 fixture 式精确值
+        check(
+            "consumed.consultation_calls_within_bound",
+            (by_stage.get("consultation") or 0) <= expectation["consultation_max_chat_calls"],
+            f"observed={by_stage.get('consultation')} max={expectation['consultation_max_chat_calls']}",
+        )
+        done_events = []
+        trace_path = outputs / "trace.jsonl"
+        for line in trace_path.read_text(encoding="utf-8").splitlines():
+            if not line.strip():
+                continue
+            event = json.loads(line)
+            if event.get("event") == "consultation_done":
+                done_events = event.get("tasks", [])
+        reasons_ok = bool(done_events) and all(
+            task.get("reason") in expectation["termination_reasons"] for task in done_events
+        )
+        check(
+            "consultation.termination_reasons_valid",
+            reasons_ok,
+            json.dumps(done_events, ensure_ascii=False)[:160],
+        )
     vision_models = {
         r.get("model") for r in consumed.get("requests", []) if r.get("kind") == "vision"
     }

@@ -142,13 +142,26 @@ pin 这两项——以及 untracked 提示等）、14 INFO、32 PASS、首轮另
   冲突，lock 触发上游依赖的内部错误；故 recorder 统一用 .venv-trial
   （reprollm 自身锁定依赖，与 fixture 基线一致），child 用 .venv-live。
   该冲突本身是"依赖隔离"价值的真实案例，也是上游可关注的兼容性观察。
-- **live 首跑**（`lingshu-live-baseline`，child exit 1）：真实分类成功后，
-  视觉请求以配置的 `step-1v-8k` + 显式参数发出，StepFun 返回
-  **402 quota_exceeded**——`vision_failure` 失败回执落盘、下游跳过、
-  失败 run 保留（`20261106T085811Z-a16e41`）。凭据诊断：DeepSeek ✓
-  （provider 响应 model=deepseek-flash）、Serper ✓（9 条结果）、
-  StepFun ✗ 配额耗尽——**live 仅待可用的 StepFun 凭据后重跑**（流程
-  prepare/lock/commit 已就绪，凭据经 .env 注入环境变量，不入库）。
+- **live 完成**（`lingshu-live-baseline-f`，`20261106T093532Z-40519b`，
+  child exit 0，251 秒）：**八阶段全部真实成功**——torch ResNet18 真实
+  分类、硅基流动 `Qwen/Qwen3-VL-32B-Instruct` 真实视觉诊断（base64
+  data URL）、DeepSeek `deepseek-chat` 真实多轮问诊/规划/协作/总结、
+  真实 GTE/Chroma 检索、真实 Serper 搜索 5 次、报告落盘；预算 58/80；
+  trace 单源 live；L2 审计 0 CRITICAL（61 findings）。
+  - 模型切换记录：StepFun key 402 配额耗尽后，经贡献者显式决策切换视觉
+    provider（`models.vision.base_url/api_key_env` 可配置；键名为环境
+    变量名，非密钥值）。首跑另暴露两处真实边界并按原语义处理：病例 3 轮
+    消息对真实模型不够（`informer_exhausted`）→ 派生
+    `case-001-live.json` 追加 2 轮收束对话（结束标记仍由模型决定）；
+    `baike.deno.dev` 第三方百科镜像服务死亡（直连/代理均不可达）→ 词条
+    搜索按贡献者授权改走原代码中已有但被注释的 Serper 路径
+    （`search.mode=serper`）；真实模型任务分割格式漂移 →
+    `planner_max_attempts` 2→4（纠正反馈循环沿用原机制）。真实协作中
+    一个任务在第 4 轮 `task_done` 提前完成（其余 3 个达到轮数上限）——
+    verify 为非 fixture 模式改用上界+终止原因校验，精确计数校验仅限
+    fixture。首跑 402 与中间失败 run（informer_exhausted / links DNS /
+    keyword batch bug / planner_exhausted）全部保留归档，未删除。
+  - 凭据经 .env 注入环境变量，不入库；`.env` 已 gitignore。
 - **.pth 复测**：fetch upstream 确认 main 仍为 dfb72eda（探针基线即最新
   main），探针三项目 audit 报告已补录（L0 无 .pth 相关 finding）；
   Issue A 草稿（含完整对照材料）已备于
@@ -160,8 +173,8 @@ pin 这两项——以及 untracked 提示等）、14 INFO、32 PASS、首轮另
 - **local 模式**：仓库不含可用的 ResNet18 checkpoint（`backend/model/tongue_coating_classify/`
   只有 dataset/train/test 材料，无 .pth 权重）；GTE 模型与真实 Chroma 索引未下载/构建
   （重依赖 torch/CUDA 属独立资源步骤）。按计划保留 BLOCKED，不用合成权重替代。
-- **live 模式**：需要 DeepSeek/StepFun/Serper 凭据与预算声明（`trial/configs/live.yaml`），
-  未具备，未启动。
+- **live 模式**：已完成（见 2.4）；StepFun 凭据因配额耗尽被贡献者决策
+  替换为硅基流动 Qwen3-VL（显式记录）。
 - **issue/PR（ReproLLM）**：依赖 fork/登录与维护者确认，未提交；Issue A 的复现材料
   （探针矩阵）已就绪。
 - **Gate A / 产品 PR 质量门**：无产品 PR，未执行。
