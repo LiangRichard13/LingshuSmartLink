@@ -102,6 +102,58 @@ fixture 基线的 L2 审计共 61 findings：2 CRITICAL
 pin 这两项——以及 untracked 提示等）、14 INFO、32 PASS、首轮另有
 `consistency.*` 与 profile 相关提示。完整 JSON 在 `private/fixture-a-l2.stdout`。
 
+## 2.4 真实层进展（2026-11-06 下午更新）
+
+凭据与资产到位后完成了 local 全链路与 live 首跑：
+
+- **真实环境**：`.venv-live`（CPython 3.12.13，211 包，依赖检查通过）。
+  无 NVIDIA GPU，按计划走官方 CPU 轮子：torch 2.6.0+cpu / torchvision
+  0.21.0+cpu（版本与原 pins 一致，去除 nvidia-*/triton；uvloop 0.21.0
+  无 Windows 轮子按平台事实跳过——完整记录见
+  `lingshu-trial-evidence/private/requirements-live-cpu.txt`）。
+- **checkpoint**：首份交付（checkpoints_resnet18/）经验证与应用预期不符
+  （自定义 features/classifier 键名、输出头 5 类、best 骨干实为 resnet34、
+  5 类标签名无处可查）——如实保留在原目录不使用。第二份交付
+  `checkpoints_resnet18_6classes/tongue_coating_resnet18_6classes.pth`
+  通过全部验收：非 LFS pointer、torchvision resnet18+fc→6 严格加载、
+  CPU 前向 (1,6)、真实病例图片预测「黑苔 100.00%」（样例即黑苔）。
+  复制为 `trial/assets-local/classifier/tongue_coating_resnet18.pth`
+  （sha256 `b8ee07a926b12bc4322b81860fd09edbea6bb2343215fec680b67ca8b796deaa`，
+  来源：维护者交付 checkpoints_resnet18_6classes/，附交付 test.py）。
+- **GTE/索引**：modelscope 下载 iic/nlp_gte_sentence-embedding_chinese-base
+  至 trial/assets-local/gte（floating 下载，字节身份见
+  trial/assets-local/assets-manifest.json，22 文件哈希）；以改造后的构建
+  CLI 生成 chroma-200 与 chroma-400 两个索引及 build-manifest.json；真实
+  检索冒烟返回 doc 身份/来源/排名/得分。
+- **local-baseline run**（`20261106T084948Z-adb8ed`，child=.venv-live）：
+  八阶段全部成功；真实分类（torch CPU）+ 真实 GTE/Chroma 检索（L2 距离
+  0.687/0.702）+ cassette 注入 LLM/搜索；verify 18 项全 PASS；trace 单源
+  local；预算 59/80。L2 审计 61 findings、0 CRITICAL（fixture 基线的
+  2 条模型 revision CRITICAL 在 local 真实资产声明下消失）。
+- **chunk 200→400 对照**：重建 400/20 索引后
+  `lingshu-local-chunk400-c`（`20261106T085519Z-b60f3a`）对照
+  `diff --fail-on HIGH` 精确命中 `custom.rag.chunk_size 200→400`（HIGH）+
+  配置 hash 伴随变化；真实检索返回**未变化**（3 条短语料各成一块，如实
+  记录，不夸大）。首跑 chunk400（`20261106T085207Z-8229e7`）暴露了我方
+  配置错误（路径切 400、chunk_size 仍 200）——已修正并新增 verify 交叉
+  校验（config 分块参数 vs 索引构建清单），污染的首跑归档保留。
+- **recorder/child 环境分离（记录在案的偏差）**：.venv-live 内以
+  --no-deps 安装的 reprollm 与原项目旧 pins（typer 0.15.2 等）存在依赖
+  冲突，lock 触发上游依赖的内部错误；故 recorder 统一用 .venv-trial
+  （reprollm 自身锁定依赖，与 fixture 基线一致），child 用 .venv-live。
+  该冲突本身是"依赖隔离"价值的真实案例，也是上游可关注的兼容性观察。
+- **live 首跑**（`lingshu-live-baseline`，child exit 1）：真实分类成功后，
+  视觉请求以配置的 `step-1v-8k` + 显式参数发出，StepFun 返回
+  **402 quota_exceeded**——`vision_failure` 失败回执落盘、下游跳过、
+  失败 run 保留（`20261106T085811Z-a16e41`）。凭据诊断：DeepSeek ✓
+  （provider 响应 model=deepseek-flash）、Serper ✓（9 条结果）、
+  StepFun ✗ 配额耗尽——**live 仅待可用的 StepFun 凭据后重跑**（流程
+  prepare/lock/commit 已就绪，凭据经 .env 注入环境变量，不入库）。
+- **.pth 复测**：fetch upstream 确认 main 仍为 dfb72eda（探针基线即最新
+  main），探针三项目 audit 报告已补录（L0 无 .pth 相关 finding）；
+  Issue A 草稿（含完整对照材料）已备于
+  `lingshu-trial-evidence/public/issue-pth.md`，待人工审阅后提交。
+
 ## 3. BLOCKED / 未执行（原样列出）
 
 - **fork 与 upstream remote**：需 `gh auth login --web`（交互式，仅贡献者可完成）。
