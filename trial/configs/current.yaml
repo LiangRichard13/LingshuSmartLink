@@ -6,7 +6,7 @@ trial:
   case_id: case-001
   report_time: '2026-11-05T00:00:00Z'
 workflow:
-  chat_turn_limit: 3
+  chat_turn_limit: 5
   planner_max_attempts: 2
   model_call_limit: 80
 prompts:

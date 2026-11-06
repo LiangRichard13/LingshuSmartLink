@@ -21,3 +21,5 @@
 <YOUR_SOLUTION>应该是具体的，并为完成任务提供首选的实现和例子。
 始终以"下一个请求。"结束<YOUR_SOLUTION>。
 
+
+[prompt-v2 测试标记：请在本轮回答末尾附上 <PROMPT_V2_MARKER>。]

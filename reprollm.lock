@@ -1,7 +1,7 @@
 schema_version: 1
 reprollm_version: 0.7.0
-generated_at: '2026-11-06T07:07:44Z'
-manifest_sha256: sha256:90878fbcb5b42a768a85d39a1ae3e70c535cb0b787a3e128138f099b6ba62459
+generated_at: '2026-11-06T07:08:40Z'
+manifest_sha256: sha256:7d7b545059ab560fa5e9fcdac75179e60c4cb87036b4baeebd86bb0935741920
 project_rules_sha256: sha256:f7fdcb0fae7e161d7b6af39efea88ca45c2c7eabf75380faa50136ee372719dd
 resolution:
   mode: offline
@@ -16,7 +16,7 @@ models:
       confidence: unresolved
       resolved_at: null
       note: null
-    observed_at: '2026-11-06T07:07:44Z'
+    observed_at: '2026-11-06T07:08:40Z'
     tokenizer: null
     chat_template: null
     config_sha256: null
@@ -35,7 +35,7 @@ models:
       confidence: unresolved
       resolved_at: null
       note: null
-    observed_at: '2026-11-06T07:07:44Z'
+    observed_at: '2026-11-06T07:08:40Z'
     tokenizer: null
     chat_template: null
     config_sha256: null
@@ -48,8 +48,8 @@ datasets: {}
 prompts:
   actor:
     path: trial/prompts/actor.txt
-    sha256: sha256:84cbb684903144838d9e7a1e2b9b309f83ea54e4bd56dcf24e321597e224348c
-    size_bytes: 1314
+    sha256: sha256:1ba87634785885eb0cf8a42dbb10b1c7bc8a204a24fae2582634caa686a5c18c
+    size_bytes: 1397
     text_sha256: null
   informer:
     path: trial/prompts/informer.txt
@@ -104,7 +104,7 @@ files:
   sha256: sha256:60562771f5554e507068025af291e60cddd127e47a3b8896e49ec7a2cb0efd34
   size_bytes: 6244
 - path: trial/configs/current.yaml
-  sha256: sha256:64b98dc138f2972bc5a0c7a2ac8bca01782c8489789bf82872b5c60d57018dfe
+  sha256: sha256:55d534eda2183d2ff9eb4ae94c647fb6a331c09684ccd2f8563e8b19d8222c54
   size_bytes: 1470
 - path: trial/corpus/manifest.json
   sha256: sha256:c2607065e6c95b8a929cd349153d06d782a7ac97e29de67ae8d38327ad368014
