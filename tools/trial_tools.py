@@ -390,12 +390,7 @@ def write_prompt_files() -> None:
     }
     for name, text in templates.items():
         write_text_if_absent(prompts / name, text)
-    # actor.txt 初始化为 baseline 模板
-    actor = prompts / "actor.txt"
-    baseline = prompts / "actor-v2.txt"
-    if actor.exists() and actor.read_text(encoding="utf-8").endswith("<PROMPT_V2_MARKER>。]\n"):
-        pass  # 已是变体，留给 prepare 切换
-    del baseline
+    write_text_if_absent(prompts / "actor-base.txt", ACTOR_PROMPT)
 
 
 def write_legacy_live_config() -> None:
@@ -731,13 +726,13 @@ def _verify_real_assets(validated) -> None:
 def _switch_variant_assets(variant: str) -> None:
     switches = {
         "baseline": (
-            ("trial/prompts/actor.txt", "trial/prompts/actor.txt"),
+            ("trial/prompts/actor.txt", "trial/prompts/actor-base.txt"),
             ("trial/cases/case-001.png", "trial/cases/case-001-base.png"),
             ("trial/fixtures/retrieval.json", "trial/fixtures/retrieval-base.json"),
             ("trial/fixtures/external.json", "trial/fixtures/external-base.json"),
         ),
         "rounds-3": (
-            ("trial/prompts/actor.txt", "trial/prompts/actor.txt"),
+            ("trial/prompts/actor.txt", "trial/prompts/actor-base.txt"),
             ("trial/cases/case-001.png", "trial/cases/case-001-base.png"),
             ("trial/fixtures/retrieval.json", "trial/fixtures/retrieval-base.json"),
             ("trial/fixtures/external.json", "trial/fixtures/external-base.json"),
@@ -749,19 +744,19 @@ def _switch_variant_assets(variant: str) -> None:
             ("trial/fixtures/external.json", "trial/fixtures/external-base.json"),
         ),
         "image-v2": (
-            ("trial/prompts/actor.txt", "trial/prompts/actor.txt"),
+            ("trial/prompts/actor.txt", "trial/prompts/actor-base.txt"),
             ("trial/cases/case-001.png", "trial/cases/case-001-v2.png"),
             ("trial/fixtures/retrieval.json", "trial/fixtures/retrieval-base.json"),
             ("trial/fixtures/external.json", "trial/fixtures/external-base.json"),
         ),
         "retrieval-reordered": (
-            ("trial/prompts/actor.txt", "trial/prompts/actor.txt"),
+            ("trial/prompts/actor.txt", "trial/prompts/actor-base.txt"),
             ("trial/cases/case-001.png", "trial/cases/case-001-base.png"),
             ("trial/fixtures/retrieval.json", "trial/fixtures/retrieval-reordered.json"),
             ("trial/fixtures/external.json", "trial/fixtures/external-base.json"),
         ),
         "search-v2": (
-            ("trial/prompts/actor.txt", "trial/prompts/actor.txt"),
+            ("trial/prompts/actor.txt", "trial/prompts/actor-base.txt"),
             ("trial/cases/case-001.png", "trial/cases/case-001-base.png"),
             ("trial/fixtures/retrieval.json", "trial/fixtures/retrieval-base.json"),
             ("trial/fixtures/external.json", "trial/fixtures/external-search-v2.json"),
