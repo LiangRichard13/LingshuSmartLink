@@ -1331,7 +1331,11 @@ def build_fixture_services(
 
 
 def build_real_services(config: TrialConfig, root: Path) -> ServiceBundle:
-    """local/live 服务工厂；重依赖在此延迟导入，失败给出明确原因。"""
+    """local/live 服务工厂；重依赖在此延迟导入，失败给出明确原因。
+
+    计划 5.2 的模式边界：local = 真实分类/embedding/RAG + 注入的固定
+    LLM/搜索响应（cassette）；live = 全部真实 provider 与搜索。
+    """
     checkpoint = config.classifier.get("checkpoint")
     assert checkpoint, "local/live 配置必须带 classifier.checkpoint"
     checkpoint_path = resolve_under_root(root, checkpoint, label="classifier.checkpoint")
@@ -1349,22 +1353,35 @@ def build_real_services(config: TrialConfig, root: Path) -> ServiceBundle:
             REASON_ASSET_MISSING,
         )
 
+    if config.mode == "local":
+        if config.search.get("mode") != "fixture" or not config.search.get("cassette"):
+            raise RealServicesError(
+                "local 模式的 LLM/搜索为注入响应，要求 search.mode=fixture 且提供 cassette",
+                REASON_MODE_CONFLICT,
+            )
+    else:
+        if config.search.get("mode") != "baidu_serper":
+            raise RealServicesError(
+                "live 模式要求 search.mode=baidu_serper（真实搜索）", REASON_MODE_CONFLICT
+            )
+
     deepseek_key = os.getenv("DEEP_SEEK_API_KEY", "")
     stepfun_key = os.getenv("STEP_FUN_API_KEY", "")
     serper_key = os.getenv("SERPER_API_KEY", "")
-    missing = [
-        name
-        for name, value in (
-            ("DEEP_SEEK_API_KEY", deepseek_key),
-            ("STEP_FUN_API_KEY", stepfun_key),
-            ("SERPER_API_KEY", serper_key),
-        )
-        if not value
-    ]
-    if missing:
-        raise RealServicesError(
-            f"{config.mode} 模式缺少环境变量: {', '.join(missing)}", REASON_ASSET_MISSING
-        )
+    if config.mode == "live":
+        missing = [
+            name
+            for name, value in (
+                ("DEEP_SEEK_API_KEY", deepseek_key),
+                ("STEP_FUN_API_KEY", stepfun_key),
+                ("SERPER_API_KEY", serper_key),
+            )
+            if not value
+        ]
+        if missing:
+            raise RealServicesError(
+                f"live 模式缺少环境变量: {', '.join(missing)}", REASON_ASSET_MISSING
+            )
 
     gte_path = config.rag.get("embedding_model")
     if not gte_path:
@@ -1384,24 +1401,35 @@ def build_real_services(config: TrialConfig, root: Path) -> ServiceBundle:
     recorder = TraceRecorder(mode=config.mode, clock=clock)
     budget = ModelCallBudget(config.model_call_limit)
     context = RunContext()
-    chat = RealChatClient(
-        base_url="https://api.deepseek.com",
-        api_key=deepseek_key,
-        timeout_seconds=config.timeouts["chat_seconds"],
+    if config.mode == "local":
+        cassette_path = resolve_under_root(
+            root, config.search["cassette"], label="search.cassette"
+        )
+        cassette = json.loads(cassette_path.read_text(encoding="utf-8"))
+        chat = FixtureChatClient(cassette["chat"], context)
+        vision = FixtureVisionClient(cassette["vision"]["response"])
+        search = FixtureSearchBackend(cassette["search"])
+    else:
+        chat = RealChatClient(
+            base_url="https://api.deepseek.com",
+            api_key=deepseek_key,
+            timeout_seconds=config.timeouts["chat_seconds"],
+        )
+        vision = RealVisionClient(
+            base_url="https://api.stepfun.com/v1",
+            api_key=stepfun_key,
+            timeout_seconds=config.timeouts["vision_seconds"],
+        )
+        search = RealSearchBackend(
+            baidu_api="https://baike.deno.dev",
+            serper_api_key=serper_key,
+            timeout_seconds=config.timeouts["search_seconds"],
+        )
+    classifier = RealClassifier(
+        checkpoint=str(checkpoint_path), device=config.classifier.get("device", "cpu")
     )
-    vision = RealVisionClient(
-        base_url="https://api.stepfun.com/v1",
-        api_key=stepfun_key,
-        timeout_seconds=config.timeouts["vision_seconds"],
-    )
-    classifier = RealClassifier(checkpoint=str(checkpoint_path), device=config.classifier.get("device", "cpu"))
     retriever = RealRetriever(
         persist_directory=str(persist_path), embedding_model=embeddings, k=config.rag["k"]
-    )
-    search = RealSearchBackend(
-        baidu_api="https://baike.deno.dev",
-        serper_api_key=serper_key,
-        timeout_seconds=config.timeouts["search_seconds"],
     )
     return ServiceBundle(
         config=config,

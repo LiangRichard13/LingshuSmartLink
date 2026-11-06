@@ -1,0 +1,61 @@
+# local 模式配置：真实 ResNet 分类器 + GTE + Chroma 索引；LLM/搜索仍由 live 凭据或后续声明
+schema_version: 1
+trial:
+  mode: local
+  case_id: case-001
+  report_time: "2026-11-05T00:00:00Z"
+workflow:
+  chat_turn_limit: 5
+  planner_max_attempts: 2
+  model_call_limit: 80
+prompts:
+  vision: trial/prompts/vision.txt
+  actor: trial/prompts/actor.txt
+  instructor: trial/prompts/instructor.txt
+  planner: trial/prompts/planner.txt
+  informer: trial/prompts/informer.txt
+  informer_wrapper: trial/prompts/informer_wrapper.txt
+  summary: trial/prompts/summary.txt
+  links: trial/prompts/links.txt
+  report_meta: trial/prompts/report_meta.txt
+  report_main: trial/prompts/report_main.txt
+models:
+  primary:
+    model: deepseek-chat
+    params:
+      temperature: 1.0
+      top_p: 1.0
+      max_tokens: 4096
+  vision:
+    model: step-1v-8k
+    params:
+      temperature: 0.7
+      top_p: 1.0
+      max_tokens: 4095
+generation:
+  temperature: 1.0
+  top_p: 1.0
+  max_tokens: 4096
+rag:
+  chunk_size: 200
+  chunk_overlap: 20
+  separators:
+  - <目录>
+  k: 2
+  corpus_manifest: trial/corpus/manifest.json
+  index_manifest: trial/assets-local/chroma-200/build-manifest.json
+  persist_directory: trial/assets-local/chroma-200
+  embedding_model: trial/assets-local/gte
+classifier:
+  mode: local
+  checkpoint: trial/assets-local/classifier/tongue_coating_resnet18.pth
+  device: cpu
+search:
+  mode: fixture
+  cassette: trial/fixtures/external.json
+  timeout_seconds: 30
+retrieval: {}
+timeouts:
+  chat_seconds: 60
+  vision_seconds: 60
+  search_seconds: 30
