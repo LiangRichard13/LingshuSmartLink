@@ -1,14 +1,14 @@
 schema_version: 1
 reprollm_version: 0.7.0
-generated_at: '2026-11-06T07:14:48Z'
-manifest_sha256: sha256:321ee6498e37103f5a6823bf0ad77b6cbdf2ec32b16b618355fe973ed7e5b54c
+generated_at: '2026-11-06T08:49:22Z'
+manifest_sha256: sha256:e56cce805e65b189c44e39a3e75177cb6447bc9b84e55b822a5ef66d8d3e7d08
 project_rules_sha256: sha256:f7fdcb0fae7e161d7b6af39efea88ca45c2c7eabf75380faa50136ee372719dd
 resolution:
   mode: offline
 models:
   primary:
     provider: other
-    id: fixture-scripted-v1
+    id: deepseek-chat
     pinnability: unpinnable
     revision:
       value: null
@@ -16,7 +16,7 @@ models:
       confidence: unresolved
       resolved_at: null
       note: null
-    observed_at: '2026-11-06T07:14:48Z'
+    observed_at: '2026-11-06T08:49:22Z'
     tokenizer: null
     chat_template: null
     config_sha256: null
@@ -27,7 +27,7 @@ models:
     trust_remote_code: null
   vision:
     provider: other
-    id: fixture-scripted-vision-v1
+    id: step-1v-8k
     pinnability: unpinnable
     revision:
       value: null
@@ -35,7 +35,7 @@ models:
       confidence: unresolved
       resolved_at: null
       note: null
-    observed_at: '2026-11-06T07:14:48Z'
+    observed_at: '2026-11-06T08:49:22Z'
     tokenizer: null
     chat_template: null
     config_sha256: null
@@ -104,14 +104,14 @@ files:
   sha256: sha256:60562771f5554e507068025af291e60cddd127e47a3b8896e49ec7a2cb0efd34
   size_bytes: 6244
 - path: trial/configs/current.yaml
-  sha256: sha256:55d534eda2183d2ff9eb4ae94c647fb6a331c09684ccd2f8563e8b19d8222c54
-  size_bytes: 1470
+  sha256: sha256:2a50427315ac56786af34a12a1776d64f4cbfc986c0796f233ed5b38effd8deb
+  size_bytes: 1695
 - path: trial/corpus/manifest.json
   sha256: sha256:c2607065e6c95b8a929cd349153d06d782a7ac97e29de67ae8d38327ad368014
   size_bytes: 799
 - path: trial/environment.json
-  sha256: sha256:8c88ea56890b69bef429b97e3f4ce18752354be5fb2a112d866b8712b8d2c6aa
-  size_bytes: 1602
+  sha256: sha256:d9ffab15239845015d0a7d2bbee659a565f36f10e11bdc57478ed84d4327f999
+  size_bytes: 7253
 - path: trial/fixtures/external.json
   sha256: sha256:f5aa7843e496f296a2f2919d270a4ff3954cc1a2ac3787967ebed7725a97de6d
   size_bytes: 8290
@@ -122,10 +122,10 @@ files:
   sha256: sha256:e2469b3b01422980ad7081b2cca07462cc3adb2215cd48b23faaef9c8381b33c
   size_bytes: 795
 generation:
-  temperature: 0.2
+  temperature: 1.0
   top_p: 1.0
   top_k: null
-  max_tokens: 512
+  max_tokens: 4096
   seed: null
   do_sample: null
   stop: null
