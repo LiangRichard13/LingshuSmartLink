@@ -2,7 +2,7 @@ schema_version: 1
 project:
   name: lingshu-single-case
 experiment:
-  name: case-001-fixture-baseline
+  name: case-001-fixture-rounds-3
   profiles:
   - inference
   - trial_policy
@@ -66,9 +66,9 @@ custom:
     mode: fixture
     case_id: case-001
     report_time: '2026-11-05T00:00:00Z'
-    variant: baseline
+    variant: rounds-3
   workflow:
-    chat_turn_limit: 5
+    chat_turn_limit: 3
     planner_max_attempts: 2
     model_call_limit: 80
   rag:
