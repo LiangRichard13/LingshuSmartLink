@@ -1082,7 +1082,15 @@ class RealChatClient:
         langchain_messages = [_to_langchain(m) for m in messages]
         result = client.invoke(langchain_messages)
         assert isinstance(result, _AIMessage)
-        return LLMResponse(content=result.content, model=model)
+        # 计划 5.3：真实 provider 上报的 model 与 usage 若可得则保存；不可用写 None
+        metadata = getattr(result, "response_metadata", {}) or {}
+        reported_model = metadata.get("model_name") or metadata.get("model")
+        usage = metadata.get("token_usage")
+        return LLMResponse(
+            content=result.content,
+            model=reported_model if isinstance(reported_model, str) else model,
+            usage=dict(usage) if isinstance(usage, dict) else None,
+        )
 
 
 def _to_langchain(message: Message):
@@ -1111,7 +1119,12 @@ class RealVisionClient:
         usage = None
         if getattr(completion, "usage", None) is not None:
             usage = completion.usage.model_dump() if hasattr(completion.usage, "model_dump") else dict(completion.usage)
-        return LLMResponse(content=completion.choices[0].message.content, model=model, usage=usage)
+        reported_model = getattr(completion, "model", None)
+        return LLMResponse(
+            content=completion.choices[0].message.content,
+            model=reported_model if isinstance(reported_model, str) else model,
+            usage=usage,
+        )
 
 
 class RealClassifier:
