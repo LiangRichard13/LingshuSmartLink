@@ -1,6 +1,7 @@
 {
   "chat_turn_limit": 5,
   "consultation_chat_calls": 48,
+  "consultation_max_chat_calls": 48,
   "expect_changes": {},
   "generation": {
     "max_tokens": 512,
@@ -10,6 +11,7 @@
   "informer_chat_calls": 3,
   "informer_turns": 3,
   "instructor_calls_per_task": 5,
+  "instructor_max_calls": 20,
   "links_chat_calls": 1,
   "mode": "fixture",
   "models": {
@@ -23,6 +25,10 @@
   "scenario": "fixture-baseline",
   "schema_version": 1,
   "tasks": 4,
+  "termination_reasons": [
+    "task_done",
+    "turn_limit"
+  ],
   "variant": "baseline",
   "vision_calls": 1
 }

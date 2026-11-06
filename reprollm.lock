@@ -1,14 +1,14 @@
 schema_version: 1
 reprollm_version: 0.7.0
-generated_at: '2026-11-06T09:35:09Z'
-manifest_sha256: sha256:21d1860811cde91e32c80beca0e7947352fab61d589579a06c43330fbe7c3946
+generated_at: '2026-11-06T09:42:48Z'
+manifest_sha256: sha256:321ee6498e37103f5a6823bf0ad77b6cbdf2ec32b16b618355fe973ed7e5b54c
 project_rules_sha256: sha256:f7fdcb0fae7e161d7b6af39efea88ca45c2c7eabf75380faa50136ee372719dd
 resolution:
   mode: offline
 models:
   primary:
     provider: other
-    id: deepseek-chat
+    id: fixture-scripted-v1
     pinnability: unpinnable
     revision:
       value: null
@@ -16,7 +16,7 @@ models:
       confidence: unresolved
       resolved_at: null
       note: null
-    observed_at: '2026-11-06T09:35:09Z'
+    observed_at: '2026-11-06T09:42:48Z'
     tokenizer: null
     chat_template: null
     config_sha256: null
@@ -27,7 +27,7 @@ models:
     trust_remote_code: null
   vision:
     provider: other
-    id: Qwen/Qwen3-VL-32B-Instruct
+    id: fixture-scripted-vision-v1
     pinnability: unpinnable
     revision:
       value: null
@@ -35,7 +35,7 @@ models:
       confidence: unresolved
       resolved_at: null
       note: null
-    observed_at: '2026-11-06T09:35:09Z'
+    observed_at: '2026-11-06T09:42:48Z'
     tokenizer: null
     chat_template: null
     config_sha256: null
@@ -97,15 +97,15 @@ prompts:
     size_bytes: 392
     text_sha256: null
 files:
-- path: trial/cases/case-001-live.json
-  sha256: sha256:f26a01de0f9951164e688444127dba54fc4cf04aac4bd54d65b62638a770e019
-  size_bytes: 962
+- path: trial/cases/case-001.json
+  sha256: sha256:9e4237d0b89d0c23d5712941b4c0a12fbcf8ac7e1aa0136f34220d43d3c1ecf2
+  size_bytes: 576
 - path: trial/cases/case-001.png
   sha256: sha256:60562771f5554e507068025af291e60cddd127e47a3b8896e49ec7a2cb0efd34
   size_bytes: 6244
 - path: trial/configs/current.yaml
-  sha256: sha256:d0e09505ee1e80ac5af93ff83ce78dde710d0345dc38088f76f745cdb2fc9e37
-  size_bytes: 1751
+  sha256: sha256:55d534eda2183d2ff9eb4ae94c647fb6a331c09684ccd2f8563e8b19d8222c54
+  size_bytes: 1470
 - path: trial/corpus/manifest.json
   sha256: sha256:c2607065e6c95b8a929cd349153d06d782a7ac97e29de67ae8d38327ad368014
   size_bytes: 799
@@ -122,10 +122,10 @@ files:
   sha256: sha256:e2469b3b01422980ad7081b2cca07462cc3adb2215cd48b23faaef9c8381b33c
   size_bytes: 795
 generation:
-  temperature: 1.0
+  temperature: 0.2
   top_p: 1.0
   top_k: null
-  max_tokens: 4096
+  max_tokens: 512
   seed: null
   do_sample: null
   stop: null

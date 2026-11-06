@@ -2,29 +2,17 @@ schema_version: 1
 project:
   name: lingshu-single-case
 experiment:
-  name: case-001-live-baseline
+  name: case-001-fixture-baseline
   profiles:
   - inference
   - trial_policy
 models:
   primary:
     provider: other
-    id: deepseek-chat
-    endpoint:
-      base_url: https://api.deepseek.com
-    params:
-      temperature: 1.0
-      top_p: 1.0
-      max_tokens: 4096
+    id: fixture-scripted-v1
   vision:
     provider: other
-    id: Qwen/Qwen3-VL-32B-Instruct
-    endpoint:
-      base_url: https://api.stepfun.com/v1
-    params:
-      temperature: 0.7
-      top_p: 1.0
-      max_tokens: 4095
+    id: fixture-scripted-vision-v1
 prompts:
   vision:
     path: trial/prompts/vision.txt
@@ -47,18 +35,18 @@ prompts:
   report_main:
     path: trial/prompts/report_main.txt
 generation:
-  temperature: 1.0
+  temperature: 0.2
   top_p: 1.0
-  max_tokens: 4096
+  max_tokens: 512
 inference:
   backend: other
 execution:
-  command: python backend/replay_case.py --mode live --case trial/cases/case-001-live.json
+  command: python backend/replay_case.py --mode fixture --case trial/cases/case-001.json
     --image trial/cases/case-001.png --config trial/configs/current.yaml --cassette
     trial/fixtures/external.json --output-dir trial/outputs/current
   cwd: .
   config_files:
-  - trial/cases/case-001-live.json
+  - trial/cases/case-001.json
   - trial/cases/case-001.png
   - trial/configs/current.yaml
   - trial/corpus/manifest.json
@@ -75,24 +63,20 @@ bindings:
     config: trial/configs/current.yaml:generation.max_tokens
 custom:
   trial:
-    mode: live
+    mode: fixture
     case_id: case-001
     report_time: '2026-11-05T00:00:00Z'
     variant: baseline
   workflow:
     chat_turn_limit: 5
-    planner_max_attempts: 4
+    planner_max_attempts: 2
     model_call_limit: 80
   rag:
     chunk_size: 200
     chunk_overlap: 20
     k: 2
     corpus_manifest: trial/corpus/manifest.json
-    index_manifest: trial/assets-local/chroma-200/build-manifest.json
-  assets:
-    classifier_file: trial/assets-local/classifier/tongue_coating_resnet18.pth
-    embedding_dir: trial/assets-local/gte
-    persist_directory: trial/assets-local/chroma-200
+    index_manifest: trial/fixtures/index-manifest.json
 artifacts:
   outputs:
   - trial/outputs/current/report.md
