@@ -4,6 +4,16 @@
 编码代理协作完成；代理执行了全部命令与代码改造，人工审阅了关键产物。本文如实区分
 「已完成 / 已观察 / BLOCKED」，不把计划、mock 通过或 child 成功表述为科学或临床效果。
 
+## 0. 规范通读记录（计划第 3 步）
+
+构建/安装之外，按计划清单完成了规范阅读：AGENTS.md 与 CONTRIBUTING.md
+全文（贡献流程、PR 模板、documentation-only 例外、分支/提交规范）；
+docs/plan/00_architecture_and_decisions.md 与 01_specification.md 按需精读
+（manifest schema、CLI 契约、run 记录、bindings、lock writer、preflight、
+profiles、redaction/privacy 边界）；validation-workflow 与 val.md 的 Gate
+定义章节。阅读结论已反映在实现中（schema 严格校验、RelPath 规则、
+profiles 继承、project rules 语法、PR documentation-only 分类）。
+
 ## 1. 身份与起点
 
 | 项 | 值 |
@@ -162,10 +172,19 @@ pin 这两项——以及 untracked 提示等）、14 INFO、32 PASS、首轮另
     fixture。首跑 402 与中间失败 run（informer_exhausted / links DNS /
     keyword batch bug / planner_exhausted）全部保留归档，未删除。
   - 凭据经 .env 注入环境变量，不入库；`.env` 已 gitignore。
-- **.pth 复测**：fetch upstream 确认 main 仍为 dfb72eda（探针基线即最新
-  main），探针三项目 audit 报告已补录（L0 无 .pth 相关 finding）；
-  Issue A 草稿（含完整对照材料）已备于
-  `lingshu-trial-evidence/public/issue-pth.md`，待人工审阅后提交。
+- **.pth 提案的最终结局（2026-11-07 更新）**：提案经贡献者授权提交为
+  [EnumaElish123/ReproLLM#15](https://github.com/EnumaElish123/ReproLLM/issues/15)，
+  维护者**接受并实现**——upstream main `b4d6c71 feat(lock): include pth
+  files in local directory inventories (ISSUE-15)`（main 现 d73f45f）。
+  按计划第 13 步在修复后的 main 重新构建 wheel（独立 venv-fix-probe 环境）
+  复测探针：目录声明的 `weights` 计入 .pth（4216 字节，A→B 摘要改变，
+  修复前为空集合摘要且不变）；固定 config 时 `config_sha256` 保持独立
+  稳定；显式文件声明行为不变。**PR A 按计划条款停止重复实现，报告修复
+  SHA 为 b4d6c71。** 复测材料：`private/pth-probe-fixed/`。
+  另：教程提案提交为 [#16](https://github.com/EnumaElish123/ReproLLM/issues/16)，
+  教程文稿 PR 为 [ReproLLM#17](https://github.com/EnumaElish123/ReproLLM/pull/17)
+  （documentation-only 例外显式声明；fork PR 的 CI 等待维护者批准工作流，
+  截至报告时无 checks reported，不写 PASS）。
 
 ## 3. BLOCKED / 未执行（原样列出）
 
@@ -175,8 +194,11 @@ pin 这两项——以及 untracked 提示等）、14 INFO、32 PASS、首轮另
   （重依赖 torch/CUDA 属独立资源步骤）。按计划保留 BLOCKED，不用合成权重替代。
 - **live 模式**：已完成（见 2.4）；StepFun 凭据因配额耗尽被贡献者决策
   替换为硅基流动 Qwen3-VL（显式记录）。
-- **issue/PR（ReproLLM）**：依赖 fork/登录与维护者确认，未提交；Issue A 的复现材料
-  （探针矩阵）已就绪。
+- **issue/PR（ReproLLM）**：已完成——Issue A（#15，被接受并实现于
+  b4d6c71）、Issue B（#16 教程提案）、教程文稿 PR（#17，待维护者审查/CI）。
+  PR A（产品代码）按计划条款因上游已实现而停止重复实现。Lingshu 侧改动
+  提案为本仓库 PR #2（codex/single-case-replay → master），合并由仓库
+  所有者决定。
 - **Gate A / 产品 PR 质量门**：无产品 PR，未执行。
 - 一次性副本的 `lock --check` 在 `git archive` 行尾转换（autocrlf）下会误报
   project-rules 变化——副本负例先重新 lock 再施加漂移；主仓库不受影响
