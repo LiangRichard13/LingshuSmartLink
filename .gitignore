@@ -1,0 +1,10 @@
+# 试用运行产物与本地环境（不提交）
+.venv-trial/
+.venv-live/
+trial/assets-local/
+trial/outputs/
+.reprollm/runs/
+__pycache__/
+*.pyc
+.env
+backend/model/tongue_coating_classify/checkpoints_*/

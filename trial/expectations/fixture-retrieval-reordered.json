@@ -1,0 +1,30 @@
+{
+  "chat_turn_limit": 5,
+  "consultation_chat_calls": 48,
+  "expect_changes": {
+    "retrieval_order": true
+  },
+  "generation": {
+    "max_tokens": 512,
+    "temperature": 0.2,
+    "top_p": 1.0
+  },
+  "informer_chat_calls": 3,
+  "informer_turns": 3,
+  "instructor_calls_per_task": 5,
+  "links_chat_calls": 1,
+  "mode": "fixture",
+  "models": {
+    "primary": "fixture-scripted-v1",
+    "vision": "fixture-scripted-vision-v1"
+  },
+  "planner_max_attempts": 2,
+  "planning_chat_calls": 1,
+  "rag_k": 2,
+  "report_chat_calls": 5,
+  "scenario": "fixture-retrieval-reordered",
+  "schema_version": 1,
+  "tasks": 4,
+  "variant": "retrieval-reordered",
+  "vision_calls": 1
+}

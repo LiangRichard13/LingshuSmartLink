@@ -1,0 +1,55 @@
+# 由 tools/trial_tools.py prepare 生成；声明本试用选定的实验输入。
+# generation 为本试用新选定的请求设置，不宣称原代码原先已显式使用这些值。
+schema_version: 1
+trial:
+  mode: fixture
+  case_id: case-001
+  report_time: '2026-11-05T00:00:00Z'
+workflow:
+  chat_turn_limit: 5
+  planner_max_attempts: 2
+  model_call_limit: 80
+prompts:
+  vision: trial/prompts/vision.txt
+  actor: trial/prompts/actor.txt
+  instructor: trial/prompts/instructor.txt
+  planner: trial/prompts/planner.txt
+  informer: trial/prompts/informer.txt
+  informer_wrapper: trial/prompts/informer_wrapper.txt
+  summary: trial/prompts/summary.txt
+  links: trial/prompts/links.txt
+  report_meta: trial/prompts/report_meta.txt
+  report_main: trial/prompts/report_main.txt
+models:
+  primary:
+    model: fixture-scripted-v1
+    params: {}
+  vision:
+    model: fixture-scripted-vision-v1
+    params: {}
+generation:
+  temperature: 0.2
+  top_p: 1.0
+  max_tokens: 512
+rag:
+  chunk_size: 200
+  chunk_overlap: 20
+  separators:
+  - <目录>
+  k: 2
+  corpus_manifest: trial/corpus/manifest.json
+  index_manifest: trial/fixtures/index-manifest.json
+classifier:
+  mode: fixture
+  checkpoint: null
+  device: cpu
+search:
+  mode: fixture
+  cassette: trial/fixtures/external.json
+  timeout_seconds: 30
+retrieval:
+  fixture: trial/fixtures/retrieval.json
+timeouts:
+  chat_seconds: 60
+  vision_seconds: 60
+  search_seconds: 30

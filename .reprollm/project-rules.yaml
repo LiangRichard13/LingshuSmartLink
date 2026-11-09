@@ -1,0 +1,36 @@
+schema_version: 1
+rules:
+- id: project.chat_turn_limit
+  field: custom.workflow.chat_turn_limit
+  severity: CRITICAL
+  reason: Bound the actor and instructor iteration budget.
+  source: manual
+  candidate_id: null
+  accepted_at: '2026-11-06T07:02:11Z'
+  bindings:
+    cli: null
+    config: trial/configs/current.yaml:workflow.chat_turn_limit
+    env: null
+- id: project.corpus_manifest
+  field: custom.rag.corpus_manifest
+  severity: CRITICAL
+  reason: Identify the corpus build used by retrieval.
+  source: manual
+  candidate_id: null
+  accepted_at: '2026-11-06T07:02:11Z'
+  bindings:
+    cli: null
+    config: trial/configs/current.yaml:rag.corpus_manifest
+    env: null
+- id: project.rag_k
+  field: custom.rag.k
+  severity: CRITICAL
+  reason: Record the number of retrieved documents.
+  source: manual
+  candidate_id: null
+  accepted_at: '2026-11-06T07:02:12Z'
+  bindings:
+    cli: null
+    config: trial/configs/current.yaml:rag.k
+    env: null
+ignored_candidates: []

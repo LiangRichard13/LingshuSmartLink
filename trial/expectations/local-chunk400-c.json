@@ -1,0 +1,28 @@
+{
+  "chat_turn_limit": 5,
+  "consultation_chat_calls": 48,
+  "expect_changes": {},
+  "generation": {
+    "max_tokens": 4096,
+    "temperature": 1.0,
+    "top_p": 1.0
+  },
+  "informer_chat_calls": 3,
+  "informer_turns": 3,
+  "instructor_calls_per_task": 5,
+  "links_chat_calls": 1,
+  "mode": "local",
+  "models": {
+    "primary": "deepseek-chat",
+    "vision": "step-1v-8k"
+  },
+  "planner_max_attempts": 2,
+  "planning_chat_calls": 1,
+  "rag_k": 2,
+  "report_chat_calls": 5,
+  "scenario": "local-chunk400-c",
+  "schema_version": 1,
+  "tasks": 4,
+  "variant": "chunk400-c",
+  "vision_calls": 1
+}

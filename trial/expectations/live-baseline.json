@@ -1,0 +1,34 @@
+{
+  "chat_turn_limit": 5,
+  "consultation_chat_calls": 48,
+  "consultation_max_chat_calls": 48,
+  "expect_changes": {},
+  "generation": {
+    "max_tokens": 4096,
+    "temperature": 1.0,
+    "top_p": 1.0
+  },
+  "informer_chat_calls": 3,
+  "informer_turns": 3,
+  "instructor_calls_per_task": 5,
+  "instructor_max_calls": 20,
+  "links_chat_calls": 1,
+  "mode": "live",
+  "models": {
+    "primary": "deepseek-chat",
+    "vision": "Qwen/Qwen3-VL-32B-Instruct"
+  },
+  "planner_max_attempts": 4,
+  "planning_chat_calls": 1,
+  "rag_k": 2,
+  "report_chat_calls": 5,
+  "scenario": "live-baseline",
+  "schema_version": 1,
+  "tasks": 4,
+  "termination_reasons": [
+    "task_done",
+    "turn_limit"
+  ],
+  "variant": "baseline",
+  "vision_calls": 1
+}

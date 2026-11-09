@@ -1,0 +1,69 @@
+# live 模式配置：全部真实 provider 与搜索。
+# 请求与预算为本试用的显式声明（单病例一次性运行；由执行者按资源调整）：
+#   - 主模型 deepseek-chat；视觉经贡献者决策切换为硅基流动 Qwen/Qwen3-VL-32B-Instruct
+#     （OpenAI 兼容 endpoint，图片按现有实现以 base64 data URL 内联；StepFun 旧 key 配额
+#      耗尽 402，见试用文档——该切换是显式记录的替代，不是静默换模型）
+#   - HTTP 超时 60/60/30 秒；SDK 重试 0 次（planner_max_attempts 已界定重试）
+#   - 协作轮数 5；planner 尝试上限 4（真实模型格式漂移实测）；全局模型调用上限 80
+#   - 搜索：Serper 关键词 1 次请求（取前 5 条）、图片 1 次、百度词条 3 次，均单病例一次执行
+schema_version: 1
+trial:
+  mode: live
+  case_id: case-001
+  report_time: "2026-11-05T00:00:00Z"
+workflow:
+  chat_turn_limit: 5
+  planner_max_attempts: 4  # 真实模型任务分割格式有漂移；纠正反馈循环沿用原机制，2 次实测不够
+  model_call_limit: 80
+prompts:
+  vision: trial/prompts/vision.txt
+  actor: trial/prompts/actor.txt
+  instructor: trial/prompts/instructor.txt
+  planner: trial/prompts/planner.txt
+  informer: trial/prompts/informer.txt
+  informer_wrapper: trial/prompts/informer_wrapper.txt
+  summary: trial/prompts/summary.txt
+  links: trial/prompts/links.txt
+  report_meta: trial/prompts/report_meta.txt
+  report_main: trial/prompts/report_main.txt
+models:
+  primary:
+    model: deepseek-chat
+    params:
+      temperature: 1.0
+      top_p: 1.0
+      max_tokens: 4096
+  vision:
+    model: Qwen/Qwen3-VL-32B-Instruct
+    base_url: https://api.siliconflow.cn/v1
+    api_key_env: SILICON_FLOW_API_KEY
+    params:
+      temperature: 0.7
+      top_p: 1.0
+      max_tokens: 4095
+generation:
+  temperature: 1.0
+  top_p: 1.0
+  max_tokens: 4096
+rag:
+  chunk_size: 200
+  chunk_overlap: 20
+  separators:
+  - <目录>
+  k: 2
+  corpus_manifest: trial/corpus/manifest.json
+  index_manifest: trial/assets-local/chroma-200/build-manifest.json
+  persist_directory: trial/assets-local/chroma-200
+  embedding_model: trial/assets-local/gte
+classifier:
+  mode: local
+  checkpoint: trial/assets-local/classifier/tongue_coating_resnet18.pth
+  device: cpu
+search:
+  mode: serper  # baike.deno.dev 服务失效（2026-11-06 直连/代理均不可达），词条搜索经贡献者授权改走 Serper 网页搜索
+  timeout_seconds: 30
+retrieval: {}
+timeouts:
+  chat_seconds: 60
+  vision_seconds: 60
+  search_seconds: 30

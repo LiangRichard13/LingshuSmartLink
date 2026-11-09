@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "note": "人工构造的确定响应（synthetic scripted），不是历史录制；不声称真实模型输出。",
+  "classification": {
+    "label": "黑苔",
+    "confidence": "97.30"
+  },
+  "vision": {
+    "response": "（fixture 合成诊断）舌象显示黑苔，舌质偏红，苔厚均匀分布，考虑脾胃湿热可能，建议结合面脉诊综合判断，本段不构成医疗建议。"
+  },
+  "chat": {
+    "informer": [
+      "您好，请问症状出现的具体部位在哪里？",
+      "请描述症状的持续时间与发作规律，是否伴随腹泻？",
+      "患者为24岁男性学生，主诉间歇性下腹胀痛3天，饭后发作持续1小时，伴糊状腹泻，无慢性病史，饮食偶辛辣，作息规律，舌象黑苔提示脾胃湿热可能。<INFORMER_TASK_DONE>"
+    ],
+    "planner": [
+      "1.给出针对下腹胀痛的诊断与辨证结论（fixture 合成任务）<TASK_SPLIT>2.给出基础调整方案（fixture 合成任务）<TASK_SPLIT>3.给出中医治疗方案（fixture 合成任务）<TASK_SPLIT>4.给出需警惕的预警（fixture 合成任务）"
+    ],
+    "actor": [
+      "这是任务的完整解决方案：任务1初次方案（fixture 合成内容）。下一个请求。",
+      "这是任务的完整解决方案：任务1第1轮修订（fixture 合成内容）。下一个请求。",
+      "这是任务的完整解决方案：任务1第2轮修订（fixture 合成内容）。下一个请求。",
+      "这是任务的完整解决方案：任务1第3轮修订（fixture 合成内容）。下一个请求。",
+      "这是任务的完整解决方案：任务1第4轮修订（fixture 合成内容）。下一个请求。",
+      "这是任务的完整解决方案：任务1第5轮修订（fixture 合成内容）。下一个请求。",
+      "这是任务的完整解决方案：任务2初次方案（fixture 合成内容）。下一个请求。",
+      "这是任务的完整解决方案：任务2第1轮修订（fixture 合成内容）。下一个请求。",
+      "这是任务的完整解决方案：任务2第2轮修订（fixture 合成内容）。下一个请求。",
+      "这是任务的完整解决方案：任务2第3轮修订（fixture 合成内容）。下一个请求。",
+      "这是任务的完整解决方案：任务2第4轮修订（fixture 合成内容）。下一个请求。",
+      "这是任务的完整解决方案：任务2第5轮修订（fixture 合成内容）。下一个请求。",
+      "这是任务的完整解决方案：任务3初次方案（fixture 合成内容）。下一个请求。",
+      "这是任务的完整解决方案：任务3第1轮修订（fixture 合成内容）。下一个请求。",
+      "这是任务的完整解决方案：任务3第2轮修订（fixture 合成内容）。下一个请求。",
+      "这是任务的完整解决方案：任务3第3轮修订（fixture 合成内容）。下一个请求。",
+      "这是任务的完整解决方案：任务3第4轮修订（fixture 合成内容）。下一个请求。",
+      "这是任务的完整解决方案：任务3第5轮修订（fixture 合成内容）。下一个请求。",
+      "这是任务的完整解决方案：任务4初次方案（fixture 合成内容）。下一个请求。",
+      "这是任务的完整解决方案：任务4第1轮修订（fixture 合成内容）。下一个请求。",
+      "这是任务的完整解决方案：任务4第2轮修订（fixture 合成内容）。下一个请求。",
+      "这是任务的完整解决方案：任务4第3轮修订（fixture 合成内容）。下一个请求。",
+      "这是任务的完整解决方案：任务4第4轮修订（fixture 合成内容）。下一个请求。",
+      "这是任务的完整解决方案：任务4第5轮修订（fixture 合成内容）。下一个请求。"
+    ],
+    "instructor": [
+      "指令：完善任务1第1轮内容（fixture 合成指令）。 输入：无 。",
+      "指令：完善任务1第2轮内容（fixture 合成指令）。 输入：无 。",
+      "指令：完善任务1第3轮内容（fixture 合成指令）。 输入：无 。",
+      "指令：完善任务1第4轮内容（fixture 合成指令）。 输入：无 。",
+      "指令：完善任务1第5轮内容（fixture 合成指令）。 输入：无 。",
+      "指令：完善任务2第1轮内容（fixture 合成指令）。 输入：无 。",
+      "指令：完善任务2第2轮内容（fixture 合成指令）。 输入：无 。",
+      "指令：完善任务2第3轮内容（fixture 合成指令）。 输入：无 。",
+      "指令：完善任务2第4轮内容（fixture 合成指令）。 输入：无 。",
+      "指令：完善任务2第5轮内容（fixture 合成指令）。 输入：无 。",
+      "指令：完善任务3第1轮内容（fixture 合成指令）。 输入：无 。",
+      "指令：完善任务3第2轮内容（fixture 合成指令）。 输入：无 。",
+      "指令：完善任务3第3轮内容（fixture 合成指令）。 输入：无 。",
+      "指令：完善任务3第4轮内容（fixture 合成指令）。 输入：无 。",
+      "指令：完善任务3第5轮内容（fixture 合成指令）。 输入：无 。",
+      "指令：完善任务4第1轮内容（fixture 合成指令）。 输入：无 。",
+      "指令：完善任务4第2轮内容（fixture 合成指令）。 输入：无 。",
+      "指令：完善任务4第3轮内容（fixture 合成指令）。 输入：无 。",
+      "指令：完善任务4第4轮内容（fixture 合成指令）。 输入：无 。",
+      "指令：完善任务4第5轮内容（fixture 合成指令）。 输入：无 。"
+    ],
+    "summary": [
+      "这是任务的经过修改后的完整解决方案：任务1的合成总结（fixture）。",
+      "这是任务的经过修改后的完整解决方案：任务2的合成总结（fixture）。",
+      "这是任务的经过修改后的完整解决方案：任务3的合成总结（fixture）。",
+      "这是任务的经过修改后的完整解决方案：任务4的合成总结（fixture）。"
+    ],
+    "links": [
+      "{\"terms\": [\"湿热\", \"脾胃湿热\"], \"herbs\": [\"黄连\"], \"acupoints\": [\"足三里\"], \"keyword\": \"如何调理脾胃湿热\"}"
+    ],
+    "report_meta": [
+      "# 诊断报告（fixture 合成 meta 部分）\n\n## 患者基本信息\n\n## 舌象描述\n"
+    ],
+    "report_main": [
+      "## 报告第1部分（fixture 合成）\n\n内容要点1。",
+      "## 报告第2部分（fixture 合成）\n\n内容要点2。",
+      "## 报告第3部分（fixture 合成）\n\n内容要点3。",
+      "## 报告第4部分（fixture 合成）\n\n内容要点4。"
+    ]
+  },
+  "search": {
+    "terms": [
+      {
+        "item": "湿热",
+        "item_search_result": "https://fixture.example/terms/湿热?rev=search-v2"
+      },
+      {
+        "item": "脾胃湿热",
+        "item_search_result": "https://fixture.example/terms/脾胃湿热?rev=search-v2"
+      }
+    ],
+    "herbs": [
+      {
+        "item": "黄连",
+        "item_search_result": "https://fixture.example/herbs/黄连?rev=search-v2"
+      }
+    ],
+    "acupoints": [
+      {
+        "item": "足三里",
+        "item_search_result": "https://fixture.example/acupoints/足三里?rev=search-v2"
+      }
+    ],
+    "herb_images": [
+      {
+        "item": "黄连",
+        "item_image_search_result": "https://fixture.example/images/黄连.jpg?rev=search-v2"
+      }
+    ],
+    "keyword": [
+      {
+        "title": "脾胃湿热的饮食调理（fixture 搜索结果search-v2）",
+        "link": "https://fixture.example/articles/1"
+      },
+      {
+        "title": "合成养生文章二",
+        "link": "https://fixture.example/articles/2"
+      },
+      {
+        "title": "合成养生文章三",
+        "link": "https://fixture.example/articles/3"
+      },
+      {
+        "title": "合成养生文章四",
+        "link": "https://fixture.example/articles/4"
+      },
+      {
+        "title": "合成养生文章五",
+        "link": "https://fixture.example/articles/5"
+      }
+    ]
+  }
+}

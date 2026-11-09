@@ -1,0 +1,160 @@
+schema_version: 1
+reprollm_version: 0.7.0
+generated_at: '2026-11-06T09:42:48Z'
+manifest_sha256: sha256:321ee6498e37103f5a6823bf0ad77b6cbdf2ec32b16b618355fe973ed7e5b54c
+project_rules_sha256: sha256:f7fdcb0fae7e161d7b6af39efea88ca45c2c7eabf75380faa50136ee372719dd
+resolution:
+  mode: offline
+models:
+  primary:
+    provider: other
+    id: fixture-scripted-v1
+    pinnability: unpinnable
+    revision:
+      value: null
+      source: provider_no_pinning
+      confidence: unresolved
+      resolved_at: null
+      note: null
+    observed_at: '2026-11-06T09:42:48Z'
+    tokenizer: null
+    chat_template: null
+    config_sha256: null
+    adapter: null
+    local: null
+    dtype: null
+    quantization: null
+    trust_remote_code: null
+  vision:
+    provider: other
+    id: fixture-scripted-vision-v1
+    pinnability: unpinnable
+    revision:
+      value: null
+      source: provider_no_pinning
+      confidence: unresolved
+      resolved_at: null
+      note: null
+    observed_at: '2026-11-06T09:42:48Z'
+    tokenizer: null
+    chat_template: null
+    config_sha256: null
+    adapter: null
+    local: null
+    dtype: null
+    quantization: null
+    trust_remote_code: null
+datasets: {}
+prompts:
+  actor:
+    path: trial/prompts/actor.txt
+    sha256: sha256:84cbb684903144838d9e7a1e2b9b309f83ea54e4bd56dcf24e321597e224348c
+    size_bytes: 1314
+    text_sha256: null
+  informer:
+    path: trial/prompts/informer.txt
+    sha256: sha256:9c2abee3cce068202ca141159817c8d1a1e68c8dfbaadc96eb2d13e2cd2f4288
+    size_bytes: 1746
+    text_sha256: null
+  informer_wrapper:
+    path: trial/prompts/informer_wrapper.txt
+    sha256: sha256:6de38403f76e0a1025ced0e7a5b4681f45e41d7702a500825beef4db4ed14c8f
+    size_bytes: 266
+    text_sha256: null
+  instructor:
+    path: trial/prompts/instructor.txt
+    sha256: sha256:018b8cfa17a707786a05d5c681c98bd9f638ab08fecd87f01afd2d7df2c81ac4
+    size_bytes: 1767
+    text_sha256: null
+  links:
+    path: trial/prompts/links.txt
+    sha256: sha256:5311542a7c28fd072e3862821323891db342c3efcfaed4e8d0a13494817e6a66
+    size_bytes: 1318
+    text_sha256: null
+  planner:
+    path: trial/prompts/planner.txt
+    sha256: sha256:526ffbbde25c292adc2482d80e901fb49d5b631034a72d1977f2819e9f89a1d7
+    size_bytes: 1013
+    text_sha256: null
+  report_main:
+    path: trial/prompts/report_main.txt
+    sha256: sha256:4d05fa252506804860f22e972347ca1ae3ab9fc783ca64fbbdf6e84526c9309c
+    size_bytes: 499
+    text_sha256: null
+  report_meta:
+    path: trial/prompts/report_meta.txt
+    sha256: sha256:16bcd4dcabf6de5611298b248b5f5bb36505c22d3ad90e9973bbe11cf05e93cb
+    size_bytes: 701
+    text_sha256: null
+  summary:
+    path: trial/prompts/summary.txt
+    sha256: sha256:94745b3ae79cd66f38260a90aea6e98a3bc6eb6e5dc6f8a51113101af39e2f65
+    size_bytes: 549
+    text_sha256: null
+  vision:
+    path: trial/prompts/vision.txt
+    sha256: sha256:547a01d6f88690fa3f0e8058a0855d2aa2467dc5c6d3c29ce9ad4bb25d55737c
+    size_bytes: 392
+    text_sha256: null
+files:
+- path: trial/cases/case-001.json
+  sha256: sha256:9e4237d0b89d0c23d5712941b4c0a12fbcf8ac7e1aa0136f34220d43d3c1ecf2
+  size_bytes: 576
+- path: trial/cases/case-001.png
+  sha256: sha256:60562771f5554e507068025af291e60cddd127e47a3b8896e49ec7a2cb0efd34
+  size_bytes: 6244
+- path: trial/configs/current.yaml
+  sha256: sha256:55d534eda2183d2ff9eb4ae94c647fb6a331c09684ccd2f8563e8b19d8222c54
+  size_bytes: 1470
+- path: trial/corpus/manifest.json
+  sha256: sha256:c2607065e6c95b8a929cd349153d06d782a7ac97e29de67ae8d38327ad368014
+  size_bytes: 799
+- path: trial/environment.json
+  sha256: sha256:d9ffab15239845015d0a7d2bbee659a565f36f10e11bdc57478ed84d4327f999
+  size_bytes: 7253
+- path: trial/fixtures/external.json
+  sha256: sha256:f5aa7843e496f296a2f2919d270a4ff3954cc1a2ac3787967ebed7725a97de6d
+  size_bytes: 8290
+- path: trial/fixtures/index-manifest.json
+  sha256: sha256:5b13ff091b0cc19b908d402dd28fcb6a260ef3de47e66793f395c388b8a5d74d
+  size_bytes: 307
+- path: trial/fixtures/retrieval.json
+  sha256: sha256:e2469b3b01422980ad7081b2cca07462cc3adb2215cd48b23faaef9c8381b33c
+  size_bytes: 795
+generation:
+  temperature: 0.2
+  top_p: 1.0
+  top_k: null
+  max_tokens: 512
+  seed: null
+  do_sample: null
+  stop: null
+  repetition_penalty: null
+  n: null
+inference:
+  backend: other
+  version:
+    value: null
+    source: unsupported_backend
+    confidence: unresolved
+    resolved_at: null
+    note: null
+  mode: null
+  dtype: null
+  tensor_parallel_size: null
+  gpu_memory_utilization: null
+  quantization: null
+  max_model_len: null
+  kv_cache_dtype: null
+  params: {}
+training: null
+evaluation: null
+privacy: null
+environment:
+  python: 3.12.13
+  platform: windows
+  packages: {}
+  gpu:
+    driver: null
+    cuda_driver_max: null
+    source: unavailable
