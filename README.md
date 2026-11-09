@@ -155,3 +155,9 @@ python <项目路径>/backend/agentsRunner.py
 ```
 
 输入舌苔图片路径:`<项目路径>/backend/static/images/<你的舌苔图片文件>`
+
+
+### Reproducibility note
+
+The local classifier checkpoint inventory was tested with ReproLLM; see the
+[version-scoped usage report](docs/reproducibility/reprollm-usage.md).
